@@ -3,6 +3,7 @@
 .vscode/
 package-lock.json
 dist/
+.eslintcache
 
 # dependencies
 /node_modules
