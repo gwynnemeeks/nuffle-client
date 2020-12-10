@@ -10,8 +10,9 @@ import './Nuffle.scss';
 export const Nuffle = () => (
     <>
     <Route render={() => {
-            if (localStorage.getItem("lu_token")) {
+            if (localStorage.getItem("token")) {
                 return <>
+                <h1>Nuffle</h1>
                     <Route render={props => <ApplicationViews {...props} />} />
                 </>
             } else {

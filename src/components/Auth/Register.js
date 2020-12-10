@@ -6,7 +6,7 @@ export const Register = (props) => {
     const firstName = React.createRef()
     const lastName = React.createRef()
     const email = React.createRef()
-    const username = React.createRef()
+    const title = React.createRef()
     const password = React.createRef()
     const verifyPassword = React.createRef()
     const passwordDialog = React.createRef()
@@ -16,9 +16,10 @@ export const Register = (props) => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
+                "username": email.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
+                "title": title.current.value,
                 "email": email.current.value,
                 "password": password.current.value
             }
@@ -74,8 +75,8 @@ export const Register = (props) => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputUsername"> Username </label>
-                    <textarea ref={username} name="username" className="form-control" placeholder="What's your chosen name, Coach?" />
+                    <label htmlFor="inputTitle"> Coach What? </label>
+                    <textarea ref={title} name="title" className="form-control" placeholder="What's your chosen moniker, Coach?" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
