@@ -18,14 +18,14 @@ export const Login = props => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                email: email.current.value,
+                username: email.current.value,
                 password: password.current.value
             })
         })
             .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem( "nu_token", res.token )
+                    localStorage.setItem( "n_token", res.token )
                     props.history.push("/")
                 }
                 else {
