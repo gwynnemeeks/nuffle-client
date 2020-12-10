@@ -1,10 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Nuffle } from './components/Nuffle';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from "react-router-dom"
+import { Nuffle } from './components/Nuffle'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nuffle />
+    <Router>
+      <Nuffle />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );
