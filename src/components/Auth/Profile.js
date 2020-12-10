@@ -2,7 +2,7 @@
 import React, { useEffect, useContext } from "react"
 // import { HumanDate } from "../utils/HumanDate.js"
 import { ProfileContext } from "./AuthProvider.js"
-import "./Profile.css"
+// import "./Profile.scss"
 
 
 export const Profile = () => {

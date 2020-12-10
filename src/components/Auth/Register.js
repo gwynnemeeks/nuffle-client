@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import "./Auth.css"
+import "./Auth.scss"
 
 export const Register = (props) => {
     const firstName = React.createRef()
