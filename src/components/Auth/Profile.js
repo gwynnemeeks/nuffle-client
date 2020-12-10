@@ -25,7 +25,6 @@ export const Profile = () => {
                     Welcome: {profile.coach && profile.coach.user.first_name} {profile.coach && profile.coach.user.last_name}
                 </div>
                 <div className="profile__username">Username: {profile.coach && profile.coach.user.username}</div>
-                <div className="profile__bio">About you: {profile.coach && profile.coach.bio}</div>
             </section>
             {/* <section className="profile__registrations">
                 <header className="registrations__header">
