@@ -28,4 +28,12 @@ export const TeamProvider = (props) => {
         .then(response => response.json())
         .then(getTeams)
     }
+
+    return (
+        <TeamContext.Provider value={{
+            teams, getTeams, createTeam
+        }}>
+            {props.children}
+        </TeamContext.Provider>
+    )
 }
