@@ -6,10 +6,11 @@ export const TeamProvider = (props) => {
     const [teams, setTeams] = useState([])
 
     const getTeams = () => {
-        return fetch("http://localhost:8000/teams",
-        headers: {
-            "Authorization": `Token ${localStorage.getItem("token")}`
-        }
+        return fetch("http://localhost:8000/teams", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            }
     })
         .then(response => response.json())
         .then(setTeams)
