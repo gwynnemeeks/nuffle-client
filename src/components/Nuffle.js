@@ -5,6 +5,9 @@ import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./Auth/Login"
 import { Register } from "./Auth/Register"
 
+import { EventList } from "./Events/EventList"
+import { EventProvider } from "./Events/EventProvider"
+
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
 
@@ -20,6 +23,10 @@ export const Nuffle = () => (
                 return <>
                 <h1>Nuffle</h1>
                     <Route render={props => <ApplicationViews {...props} />} />
+                <h2>Events</h2>
+                <EventProvider>
+                    <EventList />
+                </EventProvider>
                 <h2>Teams</h2>
                 <TeamProvider>
                     <TeamList />
