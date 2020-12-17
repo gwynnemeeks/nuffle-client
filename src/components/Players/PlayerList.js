@@ -11,10 +11,6 @@ export const PlayerList = () => {
         getPlayers()
     }, [])
 
-    useEffect(() => {
-        console.log(players)
-    }, [players])
-
     return(
         <div className="players">
             {
