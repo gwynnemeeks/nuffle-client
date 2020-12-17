@@ -21,6 +21,12 @@ export const ApplicationViews = (props) => {
                 </Route>
             </TeamProvider>
 
+            <TeamProvider>
+                <Route exact path="/teams">
+                    <TeamList />
+                </Route>
+            </TeamProvider>
+
             <PlayerProvider>
                 <Route path="/players">
                     <PlayerList />
