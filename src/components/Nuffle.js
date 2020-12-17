@@ -5,6 +5,9 @@ import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./Auth/Login"
 import { Register } from "./Auth/Register"
 
+import { PlayerList } from "./Players/PlayerList"
+import { PlayerProvider } from "./Players/PlayerProvider"
+
 import { TeamList } from "./Teams/TeamList"
 import { TeamProvider } from "./Teams/TeamProvider"
 
@@ -21,6 +24,10 @@ export const Nuffle = () => (
                 <TeamProvider>
                     <TeamList />
                 </TeamProvider>
+                <h2>Players</h2>
+                <PlayerProvider>
+                    <PlayerList />
+                </PlayerProvider>
 
                 </>
             } else {

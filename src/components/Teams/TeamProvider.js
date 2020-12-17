@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 export const TeamContext = React.createContext()
 
@@ -15,7 +15,6 @@ export const TeamProvider = (props) => {
         .then(response => response.json())
         .then(setTeams)
     }
-
     const createTeam = team => {
         return fetch("http://localhost:8000/teams", {
             method: "POST",
