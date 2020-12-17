@@ -21,6 +21,7 @@ export const Nuffle = () => (
                 <TeamProvider>
                     <TeamList />
                 </TeamProvider>
+                <h2>Players</h2>
 
                 </>
             } else {
