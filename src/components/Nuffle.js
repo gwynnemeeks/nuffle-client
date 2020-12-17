@@ -5,6 +5,9 @@ import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./Auth/Login"
 import { Register } from "./Auth/Register"
 
+import { TeamList } from "./Teams/TeamList"
+import { TeamProvider } from "./Teams/TeamProvider"
+
 import './Nuffle.scss';
 
 export const Nuffle = () => (
@@ -14,6 +17,11 @@ export const Nuffle = () => (
                 return <>
                 <h1>Nuffle</h1>
                     <Route render={props => <ApplicationViews {...props} />} />
+                <h2>Teams</h2>
+                <TeamProvider>
+                    <TeamList />
+                </TeamProvider>
+
                 </>
             } else {
                 return <Redirect to="/login" />
