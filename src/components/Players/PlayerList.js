@@ -14,7 +14,7 @@ export const PlayerList = () => {
     return(
         <div className="players">
             {
-                players.map(play => <Player key={play.id} Player={play} />)
+                players.map(play => <Player key={play.id} player={play} />)
             }
         </div>
     )

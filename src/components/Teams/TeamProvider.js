@@ -15,8 +15,6 @@ export const TeamProvider = (props) => {
         .then(response => response.json())
         .then(setTeams)
     }
-    console.warn(getTeams)
-
     const createTeam = team => {
         return fetch("http://localhost:8000/teams", {
             method: "POST",

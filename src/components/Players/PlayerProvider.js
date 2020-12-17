@@ -3,7 +3,7 @@ import React, { useState } from "react"
 export const PlayerContext = React.createContext()
 
 export const PlayerProvider = (props) => {
-    const [players, setPlayers] = useState([])
+    const [players, setPlayers] = useState([{name: ''}])
 
     const getPlayers = () => {
         return fetch("http://localhost:8000/players", {
