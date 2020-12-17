@@ -8,14 +8,8 @@ export const TeamList = () => {
     const { teams, getTeams } = useContext(TeamContext)
 
     useEffect(() => {
-        console.log("TeamList: Initial render before data")
         getTeams()
     }, [])
-
-    useEffect(() => {
-        console.log("TeamList: Team state changed")
-        console.log(teams)
-    }, [teams])
 
     return(
         <div className="teams">
