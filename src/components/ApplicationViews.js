@@ -3,13 +3,14 @@ import { Route } from "react-router-dom"
 // import { ProfileProvider } from "./Auth/AuthProvider"
 // import { Profile } from "./Auth/Profile"
 
-import { TeamProvider } from "./Teams/TeamProvider"
-import { PlayerProvider } from "./Players/PlayerProvider"
+import { EventList } from "./Events/EventList"
 import { EventProvider } from "./Events/EventProvider"
 
-import { TeamList } from "./Teams/TeamList"
 import { PlayerList } from "./Players/PlayerList"
-import { EventList } from "./Events/EventList"
+import { PlayerProvider } from "./Players/PlayerProvider"
+
+import { TeamList } from "./Teams/TeamList"
+import { TeamProvider } from "./Teams/TeamProvider"
 
 export const ApplicationViews = (props) => {
     return (

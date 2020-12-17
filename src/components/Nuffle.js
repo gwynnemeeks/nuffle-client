@@ -3,16 +3,8 @@ import React from 'react';
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./Auth/Login"
+import { NavBar } from "./Nav/NavBar"
 import { Register } from "./Auth/Register"
-
-import { EventList } from "./Events/EventList"
-import { EventProvider } from "./Events/EventProvider"
-
-import { PlayerList } from "./Players/PlayerList"
-import { PlayerProvider } from "./Players/PlayerProvider"
-
-import { TeamList } from "./Teams/TeamList"
-import { TeamProvider } from "./Teams/TeamProvider"
 
 import './Nuffle.scss';
 
@@ -21,20 +13,8 @@ export const Nuffle = () => (
     <Route render={() => {
             if (localStorage.getItem("token")) {
                 return <>
-                <h1>Nuffle</h1>
-                    <Route render={props => <ApplicationViews {...props} />} />
-                <h2>Events</h2>
-                <EventProvider>
-                    <EventList />
-                </EventProvider>
-                <h2>Teams</h2>
-                <TeamProvider>
-                    <TeamList />
-                </TeamProvider>
-                <h2>Players</h2>
-                <PlayerProvider>
-                    <PlayerList />
-                </PlayerProvider>
+                    <NavBar />
+                    <ApplicationViews />             
 
                 </>
             } else {
