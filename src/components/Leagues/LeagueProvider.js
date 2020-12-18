@@ -15,6 +15,9 @@ export const LeagueProvider = (props) => {
         .then(response => response.json())
         .then(setLeagues)
     }
+
+    console.warn(getLeagues)
+
     const createLeague = leagues => {
         return fetch("http://localhost:8000/leagues", {
             method: "POST",

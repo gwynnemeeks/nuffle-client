@@ -43,7 +43,7 @@ export const ApplicationViews = (props) => {
             </EventProvider>
 
             <LeagueProvider>
-                <Route path="leagues">
+                <Route path="/leagues">
                     <LeagueList />
                 </Route>
             </LeagueProvider>
