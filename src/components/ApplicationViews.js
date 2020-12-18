@@ -6,6 +6,9 @@ import { Route } from "react-router-dom"
 import { EventList } from "./Events/EventList"
 import { EventProvider } from "./Events/EventProvider"
 
+import { LeagueList } from "./Leagues/LeagueList"
+import { LeagueProvider } from "./Leagues/LeagueProvider"
+
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
 
@@ -38,6 +41,12 @@ export const ApplicationViews = (props) => {
                     <EventList />
                 </Route>
             </EventProvider>
+
+            <LeagueProvider>
+                <Route path="leagues">
+                    <LeagueList />
+                </Route>
+            </LeagueProvider>
         </>
     )
 }

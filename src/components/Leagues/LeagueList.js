@@ -11,6 +11,8 @@ export const LeagueList = () => {
         getLeagues()
     }, [])
 
+    console.warn(LeagueList)
+
     return(
         <div className="leagues">
             {
