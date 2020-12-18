@@ -4,7 +4,7 @@ import "./NavBar.scss"
 
 export const NavBar = (props) => {
     return (
-        <ul className="navbar">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Nuffle</Link>
             </li>
@@ -17,6 +17,6 @@ export const NavBar = (props) => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/events">Events</Link>
             </li>
-        </ul>
+        </nav>
     )
 }
