@@ -22,7 +22,7 @@ export const ApplicationViews = (props) => {
             </TeamProvider>
 
             <TeamProvider>
-                <Route exact path="/teams">
+                <Route path="/teams">
                     <TeamList />
                 </Route>
             </TeamProvider>
