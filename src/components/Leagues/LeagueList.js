@@ -19,5 +19,3 @@ export const LeagueList = () => {
         </div>
     )
 }
-
-console.log(LeagueList);

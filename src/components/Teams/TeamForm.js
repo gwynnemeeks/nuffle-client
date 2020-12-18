@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from "react"
 import { TeamContext } from "./TeamProvider.js"
-import { LeagueContext } from "../Leagues/LeagueProvider/js"
+import { LeagueContext } from "../Leagues/LeagueProvider.js"
 
 export const TeamForm = props => {
     const { createTeam } = useContext(TeamContext)
@@ -9,7 +9,7 @@ export const TeamForm = props => {
 
     const [currentTeam, setCurrentTeam] = useState({
         teamName: "",
-        teamlea: "",
+        teamType: "",
         teamRank: 0,
         teamValue: 0,
         teamRerolls: 0,
@@ -29,7 +29,7 @@ export const TeamForm = props => {
 
     return (
         <form className="teamForm">
-        <h2 className="teamForm__title">Register New team</h2>
+        <h2 className="teamForm__teamRank">Register New team</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamName">Team Name: </label>
@@ -41,9 +41,9 @@ export const TeamForm = props => {
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamlea">Team lea: </label>
-                <input lea="text" name="teamlea" required autoFocus className="form-control"
-                    value={currentTeam.teamlea}
+                <label htmlFor="teamType">Team Type: </label>
+                <input lea="text" name="teamType" required autoFocus className="form-control"
+                    value={currentTeam.teamType}
                     onChange={handleControlledInputChange}
                 />
             </div>
@@ -77,15 +77,6 @@ export const TeamForm = props => {
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamRank">Team Rank: </label>
-                <input lea="text" name="teamRank" required autoFocus className="form-control"
-                    value={currentTeam.teamRank}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
                 <label htmlFor="fanFactor">Fan Factor: </label>
                 <input lea="text" name="fanFactor" required autoFocus className="form-control"
                     value={currentTeam.fanFactor}
@@ -108,6 +99,25 @@ export const TeamForm = props => {
                     </select>
                 </div>
             </fieldset>
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
+
+                    const team = {
+                        teamName: currentTeam.teamName,
+                        teamType: currentTeam.teamType,
+                        teamRank: parseInt(currentTeam.teamRank),
+                        teamValue: parseInt(currentTeam.teamValue),
+                        teamRerolls: parseInt(currentTeam.teamRerolls),
+                        fanFactor: parseInt(currentTeam.fanFactor),
+                        leagueId: parseInt(currentTeam.leagueId)
+                    }
+
+                    // Send POST request to your API
+                    createTeam(team)
+                }}
+                className="btn btn-primary">Create</button>
         </form>
     )
 }
