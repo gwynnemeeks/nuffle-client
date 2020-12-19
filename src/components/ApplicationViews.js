@@ -6,8 +6,12 @@ import { Route } from "react-router-dom"
 import { EventList } from "./Events/EventList"
 import { EventProvider } from "./Events/EventProvider"
 
+import { LeagueList } from "./Leagues/LeagueList"
+import { LeagueProvider } from "./Leagues/LeagueProvider"
+
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
+import { TeamForm } from "./Teams/TeamForm"
 
 import { TeamList } from "./Teams/TeamList"
 import { TeamProvider } from "./Teams/TeamProvider"
@@ -16,16 +20,16 @@ export const ApplicationViews = (props) => {
     return (
         <>
             <TeamProvider>
-                <Route exact path="/">
-                    <TeamList />
-                </Route>
+            <Route path="/" render={props => <TeamList {...props} /> } />
             </TeamProvider>
 
+            <LeagueProvider>
             <TeamProvider>
-                <Route exact path="/teams">
-                    <TeamList />
-                </Route>
+                <Route path="/teams" render={props => <TeamList {...props} /> } />
+                <Route exact path="/teams/new" render={props => <TeamForm {...props} /> } />
             </TeamProvider>
+            </LeagueProvider>
+
 
             <PlayerProvider>
                 <Route path="/players">
@@ -38,6 +42,12 @@ export const ApplicationViews = (props) => {
                     <EventList />
                 </Route>
             </EventProvider>
+
+            <LeagueProvider>
+                <Route path="/leagues">
+                    <LeagueList />
+                </Route>
+            </LeagueProvider>
         </>
     )
 }
