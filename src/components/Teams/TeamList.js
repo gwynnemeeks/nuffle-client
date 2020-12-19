@@ -18,7 +18,7 @@ export const TeamList = (props) => {
         onClick={() => {
         props.history.push({ pathname: "/teams/new" })
         }}
-        >Register New Game</button>
+        >Register New Team</button>
             {
                 teams.map(tea => <Team key={tea.id} team={tea} />)
             }
