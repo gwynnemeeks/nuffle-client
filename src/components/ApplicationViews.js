@@ -19,9 +19,9 @@ import { TeamProvider } from "./Teams/TeamProvider"
 export const ApplicationViews = (props) => {
     return (
         <>
-            <TeamProvider>
+            {/* <TeamProvider>
             <Route path="/" render={props => <TeamList {...props} /> } />
-            </TeamProvider>
+            </TeamProvider> */}
 
             <LeagueProvider>
             <TeamProvider>
