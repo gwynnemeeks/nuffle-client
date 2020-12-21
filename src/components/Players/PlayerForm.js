@@ -32,11 +32,11 @@ export const PlayerForm = props => {
 
     return (
         <form className="playerForm">
-        <h2 className="playerForm__playerTitle">Register New team</h2>
+        <h2 className="playerForm__playerTitle">Register New Player</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="playerName">Player Name: </label>
-                <input lea="text" name="playerName" required autoFocus className="form-control"
+                <input type="text" name="playerName" required autoFocus className="form-control"
                     value={currentPlayer.name}
                     onChange={handleControlledInputChange}
                 />
@@ -45,7 +45,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="position">Player Position: </label>
-                <input lea="text" name="position" required autoFocus className="form-control"
+                <input type="text" name="position" required autoFocus className="form-control"
                     value={currentPlayer.position}
                     onChange={handleControlledInputChange}
                 />
@@ -54,7 +54,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="movement">Player Movement: </label>
-                <input lea="text" name="movement" required autoFocus className="form-control"
+                <input type="text" name="movement" required autoFocus className="form-control"
                     value={currentPlayer.movement}
                     onChange={handleControlledInputChange}
                 />
@@ -63,7 +63,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="strength">Player Strength: </label>
-                <input lea="text" name="strength" required autoFocus className="form-control"
+                <input type="text" name="strength" required autoFocus className="form-control"
                     value={currentPlayer.strength}
                     onChange={handleControlledInputChange}
                 />
@@ -72,7 +72,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="agility">Player Agility: </label>
-                <input lea="text" name="agility" required autoFocus className="form-control"
+                <input type="text" name="agility" required autoFocus className="form-control"
                     value={currentPlayer.agility}
                     onChange={handleControlledInputChange}
                 />
@@ -81,7 +81,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="armorValue">Armor Value: </label>
-                <input lea="text" name="armorValue" required autoFocus className="form-control"
+                <input type="text" name="armorValue" required autoFocus className="form-control"
                     value={currentPlayer.armorValue}
                     onChange={handleControlledInputChange}
                 />
@@ -90,7 +90,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="skills">Player Skills: </label>
-                <input lea="text" name="skills" required autoFocus className="form-control"
+                <input type="text" name="skills" required autoFocus className="form-control"
                     value={currentPlayer.skills}
                     onChange={handleControlledInputChange}
                 />
@@ -99,7 +99,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="cost">Player Cost: </label>
-                <input lea="text" name="cost" required autoFocus className="form-control"
+                <input type="text" name="cost" required autoFocus className="form-control"
                     value={currentPlayer.cost}
                     onChange={handleControlledInputChange}
                 />
@@ -108,7 +108,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="history">Player History: </label>
-                <input lea="text" name="history" required autoFocus className="form-control"
+                <input type="text" name="history" required autoFocus className="form-control"
                     value={currentPlayer.history}
                     onChange={handleControlledInputChange}
                 />
