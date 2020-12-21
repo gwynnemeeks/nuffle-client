@@ -116,7 +116,7 @@ export const TeamForm = props => {
 
                     // Send POST request to your API
                     createTeam(team)
-                    props.history.push("/team")
+                    props.history.push("/teams")
                 }}
                 className="btn btn-primary">Create</button>
         </form>

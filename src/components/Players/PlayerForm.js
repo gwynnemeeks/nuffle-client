@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from "react"
 import { PlayerContext } from "./PlayerProvider.js"
 import { TeamContext } from "../Teams/TeamProvider.js"
@@ -34,68 +35,95 @@ export const PlayerForm = props => {
         <h2 className="playerForm__playerTitle">Register New team</h2>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamName">Team Name: </label>
-                <input lea="text" name="teamName" required autoFocus className="form-control"
-                    value={currentTeam.teamName}
+                <label htmlFor="playerName">Player Name: </label>
+                <input lea="text" name="playerName" required autoFocus className="form-control"
+                    value={currentPlayer.name}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamType">Team Type: </label>
-                <input lea="text" name="teamType" required autoFocus className="form-control"
-                    value={currentTeam.teamType}
+                <label htmlFor="position">Player Position: </label>
+                <input lea="text" name="position" required autoFocus className="form-control"
+                    value={currentPlayer.position}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamRank">Team Rank: </label>
-                <input lea="text" name="teamRank" required autoFocus className="form-control"
-                    value={currentTeam.teamRank}
+                <label htmlFor="movement">Player Movement: </label>
+                <input lea="text" name="movement" required autoFocus className="form-control"
+                    value={currentPlayer.movement}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamValue">Team Value: </label>
-                <input lea="text" name="teamValue" required autoFocus className="form-control"
-                    value={currentTeam.teamValue}
+                <label htmlFor="strength">Player Strength: </label>
+                <input lea="text" name="strength" required autoFocus className="form-control"
+                    value={currentPlayer.strength}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="teamRerolls">Team Rerolls: </label>
-                <input lea="text" name="teamRerolls" required autoFocus className="form-control"
-                    value={currentTeam.teamRerolls}
+                <label htmlFor="agility">Player Agility: </label>
+                <input lea="text" name="agility" required autoFocus className="form-control"
+                    value={currentPlayer.agility}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="fanFactor">Fan Factor: </label>
-                <input lea="text" name="fanFactor" required autoFocus className="form-control"
-                    value={currentTeam.fanFactor}
+                <label htmlFor="armorValue">Armor Value: </label>
+                <input lea="text" name="armorValue" required autoFocus className="form-control"
+                    value={currentPlayer.armorValue}
+                    onChange={handleControlledInputChange}
+                />
+            </div>
+        </fieldset>
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="skills">Player Skills: </label>
+                <input lea="text" name="skills" required autoFocus className="form-control"
+                    value={currentPlayer.skills}
+                    onChange={handleControlledInputChange}
+                />
+            </div>
+        </fieldset>
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="cost">Player Cost: </label>
+                <input lea="text" name="cost" required autoFocus className="form-control"
+                    value={currentPlayer.cost}
+                    onChange={handleControlledInputChange}
+                />
+            </div>
+        </fieldset>
+        <fieldset>
+            <div className="form-group">
+                <label htmlFor="history">Player History: </label>
+                <input lea="text" name="history" required autoFocus className="form-control"
+                    value={currentPlayer.history}
                     onChange={handleControlledInputChange}
                 />
             </div>
         </fieldset>
         <fieldset>
                 <div className="form-group">
-                    <label htmlFor="leagueId">League: </label>
-                    <select name="leagueId" className="form-control"
-                        value={currentTeam.leagueId}
+                    <label htmlFor="teamId">Team: </label>
+                    <select name="teamId" className="form-control"
+                        value={currentPlayer.teamId}
                         onChange={handleControlledInputChange}>
-                        <option value="0">Select a league</option>
+                        <option value="0">Select a team</option>
                         {
-                            leagues.map(lea => (
-                                <option key={lea.id} value={lea.id}> {lea.league_name} </option>
+                            teams.map(tea => (
+                                <option key={tea.id} value={tea.id}> {tea.team_name} </option>
                             ))
                         }
                     </select>
@@ -106,21 +134,24 @@ export const PlayerForm = props => {
                     // Prevent form from being submitted
                     evt.preventDefault()
 
-                    const team = {
-                        teamName: currentTeam.teamName,
-                        teamType: currentTeam.teamType,
-                        teamRank: parseInt(currentTeam.teamRank),
-                        teamValue: parseInt(currentTeam.teamValue),
-                        teamRerolls: parseInt(currentTeam.teamRerolls),
-                        fanFactor: parseInt(currentTeam.fanFactor),
-                        leagueId: parseInt(currentTeam.leagueId)
-                    }
+                    const player = {
+                        name: currentPlayer.name,
+                        position: currentPlayer.position,
+                        movement: parseInt(currentPlayer.movement),
+                        strength: parseInt(currentPlayer.strength),
+                        agility: parseInt(currentPlayer.agility),
+                        armorValue: parseInt(currentPlayer.armorValue),
+                        skills: currentPlayer.skills,
+                        cost: parseInt(currentPlayer.cost),
+                        history: currentPlayer.history,
+                        teamId: parseInt(currentPlayer.teamId)
+                                    }
 
                     // Send POST request to your API
-                    createTeam(team)
+                    createPlayer(player)
+                    props.history.push("/players")
                 }}
                 className="btn btn-primary">Create</button>
         </form>
     )
-}
 }
