@@ -29,7 +29,7 @@ export const TeamForm = props => {
 
     return (
         <form className="teamForm">
-        <h2 className="teamForm__teamRank">Register New team</h2>
+        <h2 className="teamForm__teamTitle">Register New team</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamName">Team Name: </label>
