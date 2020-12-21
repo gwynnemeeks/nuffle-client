@@ -32,7 +32,7 @@ export const PlayerForm = props => {
 
     return (
         <form className="playerForm">
-        <h2 className="playerForm__playerTitle">Register New Player</h2>
+        <h2 className="playerForm__title">Register New Player</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="playerName">Player Name: </label>
