@@ -29,11 +29,11 @@ export const TeamForm = props => {
 
     return (
         <form className="teamForm">
-        <h2 className="teamForm__teamRank">Register New team</h2>
+        <h2 className="teamForm__teamTitle">Register New Team</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamName">Team Name: </label>
-                <input lea="text" name="teamName" required autoFocus className="form-control"
+                <input type="text" name="teamName" required autoFocus className="form-control"
                     value={currentTeam.teamName}
                     onChange={handleControlledInputChange}
                 />
@@ -42,7 +42,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamType">Team Type: </label>
-                <input lea="text" name="teamType" required autoFocus className="form-control"
+                <input type="text" name="teamType" required autoFocus className="form-control"
                     value={currentTeam.teamType}
                     onChange={handleControlledInputChange}
                 />
@@ -51,7 +51,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamRank">Team Rank: </label>
-                <input lea="text" name="teamRank" required autoFocus className="form-control"
+                <input type="text" name="teamRank" required autoFocus className="form-control"
                     value={currentTeam.teamRank}
                     onChange={handleControlledInputChange}
                 />
@@ -60,7 +60,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamValue">Team Value: </label>
-                <input lea="text" name="teamValue" required autoFocus className="form-control"
+                <input type="text" name="teamValue" required autoFocus className="form-control"
                     value={currentTeam.teamValue}
                     onChange={handleControlledInputChange}
                 />
@@ -69,7 +69,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamRerolls">Team Rerolls: </label>
-                <input lea="text" name="teamRerolls" required autoFocus className="form-control"
+                <input type="text" name="teamRerolls" required autoFocus className="form-control"
                     value={currentTeam.teamRerolls}
                     onChange={handleControlledInputChange}
                 />
@@ -78,7 +78,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="fanFactor">Fan Factor: </label>
-                <input lea="text" name="fanFactor" required autoFocus className="form-control"
+                <input type="text" name="fanFactor" required autoFocus className="form-control"
                     value={currentTeam.fanFactor}
                     onChange={handleControlledInputChange}
                 />
@@ -116,7 +116,7 @@ export const TeamForm = props => {
 
                     // Send POST request to your API
                     createTeam(team)
-                    props.history.push("/team")
+                    props.history.push("/teams")
                 }}
                 className="btn btn-primary">Create</button>
         </form>
