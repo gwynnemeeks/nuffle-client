@@ -26,7 +26,7 @@ export const PlayerForm = props => {
 
     const handleControlledInputChange = (e) => {
         const newPlayerState = Object.assign({}, currentPlayer)
-        newPlayerState[e.target.name] = e.target.armorValue
+        newPlayerState[e.target.name] = e.target.value
         setCurrentPlayer(newPlayerState)
     }
 
