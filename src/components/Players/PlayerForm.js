@@ -36,7 +36,7 @@ export const PlayerForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="playerName">Player Name: </label>
-                <input type="text" name="playerName" required autoFocus className="form-control"
+                <input type="text" name="name" required autoFocus className="form-control"
                     value={currentPlayer.name}
                     onChange={handleControlledInputChange}
                 />
