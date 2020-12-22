@@ -33,7 +33,7 @@ export const TeamForm = props => {
         <fieldset>
             <div className="form-group">
                 <label htmlFor="teamName">Team Name: </label>
-                <input type="text" name="teamName" required autoFocus className="form-control"
+                <input type="text" name="name" required autoFocus className="form-control"
                     value={currentTeam.teamName}
                     onChange={handleControlledInputChange}
                 />
