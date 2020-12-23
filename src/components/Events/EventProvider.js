@@ -16,13 +16,13 @@ export const EventProvider = (props) => {
     }
 
     const createEvent = event => {
-        return fetch("http://localhost:8000/Events", {
+        return fetch("http://localhost:8000/events", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify(Event)
+            body: JSON.stringify(event)
         })
         .then(response => response.json())
         .then(getEvents)
