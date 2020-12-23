@@ -16,7 +16,7 @@ export const EventList = (props) => {
             <h1>Your Upcoming Events</h1>
             <button className="btn btn-light"
             onClick={() => {
-            props.history.push({ pathname: "/eventss/new" })
+            props.history.push({ pathname: "/events/new" })
             }}
             >Register New Event</button>
             {

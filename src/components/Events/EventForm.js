@@ -9,7 +9,7 @@ export const EventForm = props => {
         time: "",
         location: "",
         finalScore: "",
-        eventSchedule: "",
+        eventSchedule: ""
     })
 
     const handleControlledInputChange = (e) => {
@@ -17,6 +17,8 @@ export const EventForm = props => {
         newEventState[e.target.name] = e.target.value
         setCurrentEvent(newEventState)
     }
+
+    console.log(currentEvent)
 
     return (
         <form className="eventForm">
@@ -26,7 +28,7 @@ export const EventForm = props => {
                 <label htmlFor="day">Event Day: </label>
                 <input type="text" name="day" required autoFocus className="form-control"
                     value={currentEvent.day}
-                    onChange={handleControlledInputChange}
+                    onChange={handleControlledInputChange} 
                 />
             </div>
         </fieldset>
