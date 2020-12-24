@@ -12,12 +12,13 @@ import { LeagueProvider } from "./Leagues/LeagueProvider"
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
 
-import { EventForm } from "./Events/EventForm"
-import { PlayerForm } from "./Players/PlayerForm"
-import { TeamForm } from "./Teams/TeamForm"
-
 import { TeamList } from "./Teams/TeamList"
 import { TeamProvider } from "./Teams/TeamProvider"
+
+import { EventForm } from "./Events/EventForm"
+import { LeagueForm } from "./Leagues/LeagueForm"
+import { PlayerForm } from "./Players/PlayerForm"
+import { TeamForm } from "./Teams/TeamForm"
 
 export const ApplicationViews = (props) => {
     return (
@@ -44,9 +45,8 @@ export const ApplicationViews = (props) => {
                     
 
             <LeagueProvider>
-                <Route path="/leagues">
-                    <LeagueList />
-                </Route>
+                <Route path="/leagues" render={props => <LeagueList {...props } /> } />
+                <Route exact path="/leagues/new" render={props => <LeagueForm {...props} /> } />
             </LeagueProvider>
         </>
     )
