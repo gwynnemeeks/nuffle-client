@@ -1,14 +1,19 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import "./Teams.scss"
 
 export const Team = ({ team }) => (
-    <section className="team">
+    <div className="team">
         <div className="card w-50">
         <div className="card-body">
-        <h5 className="card-title">{team.team_name}</h5>
-    <p className="card-text">{team.team_value}</p>
-    <button className="btn btn-primary">Team Roster</button>
+        <div className="teamDetail">
+        <h3 className="team__name">{team.team_name}</h3>
+        <p className="team__type">{team.team_type}</p>
+        <p className="team__value">{team.team_value}</p>
+    <button className="btn btn-light"
+    ><Link to="/players">Team Roster</Link></button>
     </div>
     </div>
-    </section>
+    </div>
+    </div>
 )
