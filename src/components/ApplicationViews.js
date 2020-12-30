@@ -25,34 +25,34 @@ export const ApplicationViews = (props) => {
     return (
         <>
             <TeamProvider>
-            <LeagueProvider>
-                <PlayerProvider>
-            
-                <Route path="/teams" render={props => <TeamList {...props} /> } />
-                <Route exact path="/teams/new" render={props => <TeamForm {...props} /> } />
-                <Route path="/teams/:teamId(\d+)" render={
-                    props => <TeamDetails {...props} />
-                } />
-            </PlayerProvider>
-            </LeagueProvider>
+                <LeagueProvider>
+                    <PlayerProvider>
+
+                        <Route exact path="/teams" render={props => <TeamList {...props} />} />
+                        <Route exact path="/teams/new" render={props => <TeamForm {...props} />} />
+                        <Route path="/teams/:teamId(\d+)" render={
+                            props => <TeamDetails {...props} />
+                        } />
+                    </PlayerProvider>
+                </LeagueProvider>
             </TeamProvider>
 
             <TeamProvider>
-            <PlayerProvider>
-                <Route path="/players" render={props => <PlayerList {...props} /> } />
-                <Route exact path="/players/new" render={props => <PlayerForm {...props} /> } />
-            </PlayerProvider>
+                <PlayerProvider>
+                    <Route path="/players" render={props => <PlayerList {...props} />} />
+                    <Route exact path="/players/new" render={props => <PlayerForm {...props} />} />
+                </PlayerProvider>
             </TeamProvider>
 
             <EventProvider>
-                <Route path="/events" render={props => <EventList {...props } /> } />
-                <Route exact path="/events/new" render={props => <EventForm {...props} /> } />
+                <Route path="/events" render={props => <EventList {...props} />} />
+                <Route exact path="/events/new" render={props => <EventForm {...props} />} />
             </EventProvider>
-                    
+
 
             <LeagueProvider>
-                <Route path="/leagues" render={props => <LeagueList {...props } /> } />
-                <Route exact path="/leagues/new" render={props => <LeagueForm {...props} /> } />
+                <Route path="/leagues" render={props => <LeagueList {...props} />} />
+                <Route exact path="/leagues/new" render={props => <LeagueForm {...props} />} />
             </LeagueProvider>
         </>
     )

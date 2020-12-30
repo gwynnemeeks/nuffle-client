@@ -5,12 +5,17 @@ import { TeamContext } from "./TeamProvider"
 import "./Teams.scss"
 
 export const TeamList = (props) => {
+    // Context
     const { teams, getTeams } = useContext(TeamContext)
+    // State
 
+    //Effect
     useEffect(() => {
         getTeams()
     }, [])
+    // Handle
 
+    // Return
     return(
         <div className="teams">
             <h1>Your Teams</h1>
