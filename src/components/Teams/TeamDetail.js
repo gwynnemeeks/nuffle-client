@@ -1,33 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 import { TeamContext } from "./TeamProvider"
 import { PlayerContext } from "../Players/PlayerProvider"
 
 export const TeamDetails = (props) => {
-    const { singleTeam, getSingleTeam } = useContext(TeamContext)
-    const { getPlayers } = useContext(PlayerContext)
+    const { teams, getSingleTeam } = useContext(TeamContext)
+    const { players, getPlayers } = useContext(PlayerContext)
 
-    let teamId = getSingleTeam()
+    const [singleTeam, setTeam ] = useState({})
+    const [setPlayers] = useState({})
+
 
     useEffect(() => {
-        getSingleTeam(teamId)
+        getSingleTeam()
             .then(getPlayers)
     }, [])
 
-    if (singleTeam) {
+    useEffect(() => {
+        const team = singleTeam.find(t => t.id === parseInt(props.match.params.teamId)) || {}
+        setTeam(team)
+    }, [teams])
+
+    useEffect(() => {
+        const player = players.find(p => p.id === player.teamId) || {}
+        setPlayers(player)
+    }, [players])
+
         return (
-            <>
-                <div>
-                    <article className="teamDetailsContainer">
+            <section className="teamDetailsContainer">
                         <article className="teamDetails">
                             <div className="teamName">{singleTeam.team_name}</div>
-                            <div className="teamType">{singleTeam.team_type}</div>
-
                         </article>
-                    </article>
-                </div>
-                </>
-        )
+                    </section>
+
+                )
     }
-}
