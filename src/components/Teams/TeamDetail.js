@@ -4,14 +4,18 @@
 import React, { useContext, useEffect } from "react"
 
 import { PlayerContext } from "../Players/PlayerProvider"
+import { TeamContext } from "./TeamProvider"
 
 export const TeamDetails = (props) => {
     const { players, getPlayersByTeamId } = useContext(PlayerContext)
-
-
+    const { teams, getTeams } = useContext(TeamContext)
 
     useEffect(() => {
         getPlayersByTeamId(props.match.params.teamId)
+    }, [])
+
+    useEffect(() => {
+        getTeams(props.match.params.teamId)
     }, [])
 
     return (
