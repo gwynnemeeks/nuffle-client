@@ -1,9 +1,11 @@
+// everything to do with data is here also handling state
+// manages state of the application
 import React, { useState } from "react"
 
 export const TeamContext = React.createContext()
 
 export const TeamProvider = (props) => {
-    const [teams, singleTeam, setTeams] = useState([])
+    const [teams, setTeams] = useState([])
 
     const getTeams = () => {
         return fetch("http://localhost:8000/teams", {
@@ -41,7 +43,7 @@ export const TeamProvider = (props) => {
 
     return (
         <TeamContext.Provider value={{
-            teams, getTeams, createTeam, singleTeam, getSingleTeam
+            teams, getTeams, createTeam, getSingleTeam
         }}>
             {props.children}
         </TeamContext.Provider>

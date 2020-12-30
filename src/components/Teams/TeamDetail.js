@@ -1,39 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useContext, useEffect } from "react"
-// import { Link } from "react-router-dom"
+// What is this component doing?
+// I want it to display details about the team--including player roster
+import React, { useContext, useEffect } from "react"
 
-import { TeamContext } from "./TeamProvider"
 import { PlayerContext } from "../Players/PlayerProvider"
 
 export const TeamDetails = (props) => {
-    const { teams, getSingleTeam } = useContext(TeamContext)
-    const { players, getPlayers } = useContext(PlayerContext)
+    const { players, getPlayersByTeamId } = useContext(PlayerContext)
 
-    const [singleTeam, setTeam ] = useState({})
-    const [setPlayers] = useState({})
 
 
     useEffect(() => {
-        getSingleTeam()
-            .then(getPlayers)
+        getPlayersByTeamId(props.match.params.teamId)
     }, [])
 
-    useEffect(() => {
-        const team = singleTeam.find(t => t.id === parseInt(props.match.params.teamId)) || {}
-        setTeam(team)
-    }, [teams])
+    return (
+        <>
+            {
+                players.map(play => {
+                    return <div><h3>{play.name}</h3></div>
 
-    useEffect(() => {
-        const player = players.find(p => p.id === player.teamId) || {}
-        setPlayers(player)
-    }, [players])
-
-        return (
-            <section className="teamDetailsContainer">
-                        <article className="teamDetails">
-                            <div className="teamName">{singleTeam.team_name}</div>
-                        </article>
-                    </section>
-
-                )
-    }
+                })
+            }
+        </>
+    )
+}
