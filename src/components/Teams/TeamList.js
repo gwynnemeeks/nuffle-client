@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { TeamContext } from "./TeamProvider"
-import { Team } from "./Teams"
 import "./Teams.scss"
 
 export const TeamList = (props) => {
@@ -19,9 +19,16 @@ export const TeamList = (props) => {
         props.history.push({ pathname: "/teams/new" })
         }}
         >Register New Team</button>
+
+        <article className="teamList">
             {
-                teams.map(tea => <Team key={tea.id} team={tea} />)
-            }
+                teams.map(tea => {
+                return <Link key={tea.id} to={`/teams/${tea.id}`}>
+                    <h3>{tea.team_name}</h3>
+                    </Link>
+            })
+        }
+            </article>
         </div>
     )
 }
