@@ -5,27 +5,39 @@ import React, { useContext, useEffect } from "react"
 
 import { PlayerContext } from "../Players/PlayerProvider"
 import { TeamContext } from "./TeamProvider"
+import { Team } from "./Teams"
 
 export const TeamDetails = (props) => {
     const { players, getPlayersByTeamId } = useContext(PlayerContext)
-    const { teams, getTeams } = useContext(TeamContext)
+    const { teams, getSingleTeam } = useContext(TeamContext)
 
     useEffect(() => {
         getPlayersByTeamId(props.match.params.teamId)
     }, [])
 
     useEffect(() => {
-        getTeams(props.match.params.teamId)
+        getSingleTeam(props.match.params.id)
     }, [])
 
     return (
         <>
+        <div className="teamDetail">
+            <section className="teamStats">
+            <article className="teamMap">
+
+            </article>
+            </section>
+
+        </div>            
+            <article className="playerRoster">
             {
                 players.map(play => {
                     return <div><h3>{play.name}</h3></div>
 
                 })
             }
+            </article>
+            
         </>
     )
 }
