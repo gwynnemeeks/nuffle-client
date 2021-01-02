@@ -8,19 +8,21 @@ import { TeamContext } from "./TeamProvider"
 export const TeamDetails = (props) => {
     const { getSingleTeam } = useContext(TeamContext)
 
-    const [team, setTeam] = useState({ coach: {}, league: {}})
+    const [teams, setTeam] = useState({ coach: {}, league: {}})
 
     useEffect(() => {
-        const teamId = parseInt(props.match.params.teamId)
+        const teamId = parseInt(props.match.params.id)
         getSingleTeam(teamId)
             .then(setTeam)
     }, [])
 
     return (
         <section className="team">
-            <h3 className="team__team_name">{team.team_name}</h3>
-            <p className="team__team_value">Value: {team.team_value}</p>
-            <p className="team__team_type">Race: {team.team_type}</p>
+            {/* <h2 className="team__league_name">{teams.league.league_name}</h2> */}
+            <h3 className="team__team_name">{teams.team_name}</h3>
+            {/* <p className="team__coach_title">{teams.coach.title}</p> */}
+            <p className="team__team_value">Value: {teams.team_value}</p>
+            <p className="team__team_type">Race: {teams.team_type}</p>
             
         </section>
     )
