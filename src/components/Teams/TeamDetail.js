@@ -4,11 +4,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
 import { TeamContext } from "./TeamProvider"
+import { Team } from "./Teams"
 
 export const TeamDetails = (props) => {
     const { getSingleTeam } = useContext(TeamContext)
 
-    const [teams, setTeam] = useState()
+    const [setTeam] = useState()
 
     useEffect(() => {
         const teamId = parseInt(props.match.params.teamId)
@@ -18,7 +19,7 @@ export const TeamDetails = (props) => {
 
     return (
         <section className="teamDetail">
-            <h3 className="team__teamName">{teams.team_name}</h3>
+            <Team />
         </section>
     )
 }
