@@ -19,7 +19,7 @@ export const TeamDetails = (props) => {
 
     return (
         <section className="teamDetail">
-            <Team />
+            
         </section>
     )
 }
