@@ -21,7 +21,7 @@ export const EventForm = props => {
     console.log(currentEvent)
 
     return (
-        <form className="eventForm">
+        <form className="col-6 offset-3">
         <h2 className="eventForm__eventTitle">Register New Event</h2>
         <fieldset>
             <div className="form-group">

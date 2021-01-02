@@ -31,7 +31,7 @@ export const PlayerForm = props => {
     }
 
     return (
-        <form className="playerForm">
+        <form className="col-6 offset-3">
         <h2 className="playerForm__title">Register New Player</h2>
         <fieldset>
             <div className="form-group">
