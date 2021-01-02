@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // What is this component doing?
-// I want it to display details about the team turn player roster into a link/button
+// I want it to display details about the team--including player
 import React, { useContext, useEffect } from "react"
 
 import { PlayerContext } from "../Players/PlayerProvider"
 
-export const TeamDetails = (props) => {
+export const TeamRoster = (props) => {
     const { players, getPlayersByTeamId } = useContext(PlayerContext)
 
 
