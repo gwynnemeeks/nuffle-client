@@ -1,27 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // What is this component doing?
 // I want it to display details about the team turn player roster into a link/button
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
-import { PlayerContext } from "../Players/PlayerProvider"
+import { TeamContext } from "./TeamProvider"
 
 export const TeamDetails = (props) => {
-    const { players, getPlayersByTeamId } = useContext(PlayerContext)
+    const { getSingleTeam } = useContext(TeamContext)
 
-
+    const [teams, setTeam] = useState()
 
     useEffect(() => {
-        getPlayersByTeamId(props.match.params.teamId)
+        const teamId = parseInt(props.match.params.teamId)
+        getSingleTeam(teamId)
+            .then(setTeam)
     }, [])
 
     return (
-        <>
-            {
-                players.map(play => {
-                    return <div><h3>{play.name}</h3></div>
-
-                })
-            }
-        </>
+        <section className="teamDetail">
+            <h3 className="team__teamName">{teams.team_name}</h3>
+        </section>
     )
 }

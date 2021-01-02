@@ -18,8 +18,8 @@ export const TeamProvider = (props) => {
         .then(setTeams)
     }
 
-    const getSingleTeam = (id) => {
-        return fetch(`http://localhost:8000/teams/${id}`, {
+    const getSingleTeam = (teamId) => {
+        return fetch(`http://localhost:8000/teams?teamId=${teamId}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
