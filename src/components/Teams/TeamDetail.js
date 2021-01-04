@@ -4,6 +4,7 @@
 import React, { useContext, useEffect, useState } from "react"
 
 import { TeamContext } from "./TeamProvider"
+import { TeamRoster } from "./TeamRoster"
 
 export const TeamDetails = (props) => {
     const { teams, getSingleTeam } = useContext(TeamContext)
