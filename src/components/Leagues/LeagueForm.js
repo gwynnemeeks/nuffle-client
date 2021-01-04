@@ -1,17 +1,52 @@
-import React, { useContext, useState } from "react"
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from "react"
 import { LeagueContext } from "./LeagueProvider"
 
 export const LeagueForm = props => {
-    const { createLeague } = useContext(LeagueContext)
+    const { createLeague, updateLeague, leagues, getLeagues } = useContext(LeagueContext)
 
     const [currentLeague, setCurrentLeague] = useState({
         leagueName: ""
     })
 
+    const editMode = props.match.params.hasOwnProperty("leagueId")
+
     const handleControlledInputChange = (e) => {
         const newLeagueState = Object.assign({}, currentLeague)
         newLeagueState[e.target.name] = e.target.value
         setCurrentLeague(newLeagueState)
+    }
+
+    const getLeagueInEditMode = () => {
+        if (editMode) {
+            const leagueId = parseInt(props.match.params.leagueId)
+            const selectedLeague = leagues.find(l => l.id === leagueId)
+            setCurrentLeague(selectedLeague)
+        }
+    }
+
+    useEffect(() => {
+        getLeagues()
+    }, [])
+
+    useEffect(() => {
+        getLeagueInEditMode()
+    }, [leagues])
+
+    const createNewLeague = () => {
+        if (editMode) {
+            updateLeague({
+                id: leagues.id,
+                leagueName: leagues.leagueName
+            })
+                .then(() => props.history.push("/leagues"))
+
+        } else {
+            createLeague({
+                leagueName: leagues.leagueName
+            })
+                .then(() => props.history.push("/leagues"))
+        }
     }
 
     return (
@@ -29,15 +64,12 @@ export const LeagueForm = props => {
         <button type="submit"
             onClick={evt => {
                 evt.preventDefault()
+                createNewLeague()
 
-                const league = {
-                    leagueName: currentLeague.leagueName
-                }
-
-                createLeague(league)
-                props.history.push("/leagues")
             }}
-            className="btn btn-primary">Create</button>
+            className="btn btn-dark">
+                {editMode ? "Save Updates" : "Create New League"}
+                </button>
             </form>
     )
 }
