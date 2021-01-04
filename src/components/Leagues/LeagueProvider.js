@@ -57,7 +57,6 @@ export const LeagueProvider = (props) => {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify(league)
         })
         .then(getLeagues)
     }

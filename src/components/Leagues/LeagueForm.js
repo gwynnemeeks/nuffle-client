@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react"
+
 import { LeagueContext } from "./LeagueProvider"
 
 export const LeagueForm = props => {
@@ -34,16 +35,19 @@ export const LeagueForm = props => {
     }, [leagues])
 
     const createNewLeague = () => {
+        
         if (editMode) {
             updateLeague({
                 id: leagues.id,
-                leagueName: leagues.leagueName
+                leagueName: leagues.leagueName,
+                coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/leagues"))
 
         } else {
             createLeague({
-                leagueName: leagues.leagueName
+                leagueName: leagues.leagueName,
+                coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/leagues"))
         }
@@ -51,25 +55,25 @@ export const LeagueForm = props => {
 
     return (
         <form className="col-6 offset-3">
-        <h2 className="leagueForm__leagueTitle">Register New League</h2>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="leagueName">League Name: </label>
-                <input type="text" name="leagueName" required autoFocus className="form-control"
-                    value={currentLeague.leagueName}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <button type="submit"
-            onClick={evt => {
-                evt.preventDefault()
-                createNewLeague()
+            <h2 className="leagueForm__leagueTitle">{editMode ? "Update League" : "Register New League"}</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="leagueName">League Name: </label>
+                    <input type="text" name="leagueName" required autoFocus className="form-control"
+                        value={currentLeague.leagueName}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <button type="submit"
+                onClick={evt => {
+                    evt.preventDefault()
+                    createNewLeague()
 
-            }}
-            className="btn btn-dark">
+                }}
+                className="btn btn-dark">
                 {editMode ? "Save Updates" : "Create New League"}
-                </button>
-            </form>
+            </button>
+        </form>
     )
 }
