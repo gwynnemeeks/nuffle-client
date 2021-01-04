@@ -50,9 +50,20 @@ export const LeagueProvider = (props) => {
             .then(getLeagues)
     }
 
+    const updateLeague = league => {
+        return fetch(`http://localhost:8000/leagues/${league.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+        .then(getLeagues)
+    }
+
     return (
         <LeagueContext.Provider value={{
-            leagues, getLeagues, getSingleLeague, createLeague, deleteLeague
+            leagues, getLeagues, getSingleLeague, createLeague, deleteLeague, updateLeague
         }}>
             {props.children}
         </LeagueContext.Provider>

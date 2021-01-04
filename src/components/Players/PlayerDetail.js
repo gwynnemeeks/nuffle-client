@@ -19,7 +19,14 @@ export const PlayerDetails = (props) => {
         <>
             <section className="player">
                 <h3 className="player__name">Name: {players.name}</h3>
-            </section>
+                <h4 className="card-text">Position: {players.position}</h4>
+                <ul className="list-group list-group-flush">
+                <li className="list-group-item">AG: {players.agility}</li>
+                <li className="list-group-item">AV: {players.armor_value}</li>
+                <li className="list-group-item">ST: {players.strength}</li>
+                <li className="list-group-item">MV: {players.movement}</li>
+            </ul>
+        </section>
         </>
     )
 }
