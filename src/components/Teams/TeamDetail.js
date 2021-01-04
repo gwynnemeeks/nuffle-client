@@ -4,10 +4,9 @@
 import React, { useContext, useEffect, useState } from "react"
 
 import { TeamContext } from "./TeamProvider"
-import { TeamRoster } from "./TeamRoster"
 
 export const TeamDetails = (props) => {
-    const { teams, getSingleTeam } = useContext(TeamContext)
+    const { teams, getSingleTeam, deleteTeam } = useContext(TeamContext)
 
     const [setTeam] = useState()
     // {coach: {}, league: {}}
@@ -25,7 +24,7 @@ export const TeamDetails = (props) => {
             {/* <h4 className="team__coach">Coach: {teams.coach.title}</h4> */}
             <p className="team__team_type">Race: {teams.team_type}</p>
             <p className="team__team_value">Valued at: {teams.team_value} GP</p>
-            
+            <button onClick={() => deleteTeam(teams.id).then(() => props.history.push("/teams"))} >Delete Team</button>
         </section>
     )
 }

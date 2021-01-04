@@ -43,7 +43,11 @@ export const TeamProvider = (props) => {
 
     const deleteTeam = (id) => {
         return fetch(`http://localhost:8000/teams/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
         })
             .then(getTeams)
     }
