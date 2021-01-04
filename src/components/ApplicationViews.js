@@ -8,6 +8,7 @@ import { EventProvider } from "./Events/EventProvider"
 
 import { LeagueList } from "./Leagues/LeagueList"
 import { LeagueProvider } from "./Leagues/LeagueProvider"
+import { LeagueDetails } from "./Leagues/LeagueDetail"
 
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
@@ -55,8 +56,11 @@ export const ApplicationViews = (props) => {
 
 
             <LeagueProvider>
-                <Route path="/leagues" render={props => <LeagueList {...props} />} />
+                <Route exact path="/leagues" render={props => <LeagueList {...props} />} />
                 <Route exact path="/leagues/new" render={props => <LeagueForm {...props} />} />
+                <Route exact path="/leagues/:leagueId(\d+)" render={
+                            props => <LeagueDetails {...props} />
+                        } />
             </LeagueProvider>
         </>
     )
