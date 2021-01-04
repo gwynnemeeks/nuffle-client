@@ -61,9 +61,9 @@ export const ApplicationViews = (props) => {
                 <Route exact path="/leagues/:leagueId(\d+)" render={
                             props => <LeagueDetails {...props} />
                         } />
-                <Route path="/leagues/edit/:leagueId(\d+)">
-                    <LeagueForm />
-                </Route>
+                <Route exact path="/leagues/edit/:leagueId(\d+)" render={
+                    props => <LeagueForm {...props} />
+                        } />
             </LeagueProvider>
         </>
     )

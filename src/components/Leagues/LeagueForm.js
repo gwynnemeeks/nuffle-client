@@ -20,7 +20,7 @@ export const LeagueForm = props => {
     const getLeagueInEditMode = () => {
         if (editMode) {
             const leagueId = parseInt(props.match.params.leagueId)
-            const selectedLeague = leagues.find(l => l.id === leagueId)
+            const selectedLeague = leagues.find(l => l.id === leagueId) || {}
             setCurrentLeague(selectedLeague)
         }
     }
