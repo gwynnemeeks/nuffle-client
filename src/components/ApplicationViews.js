@@ -31,7 +31,7 @@ export const ApplicationViews = (props) => {
 
                         <Route exact path="/teams" render={props => <TeamList {...props} />} />
                         <Route exact path="/teams/new" render={props => <TeamForm {...props} />} />
-                        <Route path="/teams/:teamId(\d+)" render={
+                        <Route exact path="/teams/:teamId(\d+)" render={
                             props => <TeamDetails {...props} />
                         } />
                     </PlayerProvider>
@@ -42,7 +42,7 @@ export const ApplicationViews = (props) => {
                 <PlayerProvider>
                     <Route path="/players" render={props => <PlayerList {...props} />} />
                     <Route exact path="/players/new" render={props => <PlayerForm {...props} />} />
-                    <Route path="/players/:playerId(\d+)" render={
+                    <Route exact path="/teams/:playerId(\d+)" render={
                             props => <PlayerDetails {...props} />
                         } />
                 </PlayerProvider>

@@ -26,7 +26,7 @@ export const PlayerProvider = (props) => {
     }
 
     const getSinglePlayer = (id) => {
-        return fetch(`http://localhost:8000/players/${id}`, {
+        return fetch(`http://localhost:8000/teams/players/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
