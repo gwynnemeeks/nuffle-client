@@ -25,6 +25,16 @@ export const PlayerProvider = (props) => {
         .then(setPlayers)
     }
 
+    const getSinglePlayer = (id) => {
+        return fetch(`http://localhost:8000/playerss/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+        }})
+        .then(res => res.json())
+        .then(setPlayers)
+    }
+
     const createPlayer = player => {
         return fetch("http://localhost:8000/players", {
             method: "POST",
@@ -40,7 +50,7 @@ export const PlayerProvider = (props) => {
 
     return (
         <PlayerContext.Provider value={{
-            players, getPlayers, createPlayer, getPlayersByTeamId
+            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer
         }}>
             {props.children}
         </PlayerContext.Provider>
