@@ -18,6 +18,9 @@ export const LeagueDetails = (props) => {
         <section className="league">
         <h3 className="league__league_name">Name: {leagues.league_name}</h3>
         <button className="btn btn-light" onClick={() => deleteLeague(leagues.id).then(() => props.history.push("/leagues"))} >DeleteLeague</button>
+        <button className="btn btn-dark" onClick={() => {
+            props.history.push(`/leagues/edit/${leagues.id}`)
+        }}>Edit League</button>
         </section>
     )
     
