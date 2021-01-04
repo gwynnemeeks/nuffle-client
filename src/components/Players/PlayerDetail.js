@@ -16,8 +16,10 @@ export const PlayerDetails = (props) => {
     }, [])
 
     return (
-        <section className="player">
-            <h3 className="player__name">Name: {players.name}</h3>
-        </section>
+        <>
+            <section className="player">
+                <h3 className="player__name">Name: {players.name}</h3>
+            </section>
+        </>
     )
 }
