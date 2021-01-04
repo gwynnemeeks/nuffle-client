@@ -32,7 +32,7 @@ export const TeamDetails = (props) => {
             {/* <h4 className="team__coach">Coach: {teams.coach.title}</h4> */}
             <p className="team__team_type">Race: {teams.team_type}</p>
             <p className="team__team_value">Valued at: {teams.team_value} GP</p>
-            <button onClick={() => deleteTeam(teams.id).then(() => props.history.push("/teams"))} >Delete Team</button>
+            <button className="btn btn-light" onClick={() => deleteTeam(teams.id).then(() => props.history.push("/teams"))} >Delete Team</button>
             {
                 players.map(play => {
                     return <Link key={play.id} to={`players/${play.id}`}>
