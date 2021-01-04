@@ -11,8 +11,8 @@ import { LeagueProvider } from "./Leagues/LeagueProvider"
 
 import { PlayerList } from "./Players/PlayerList"
 import { PlayerProvider } from "./Players/PlayerProvider"
+import { PlayerDetails } from "./Players/PlayerDetail"
 
-// import { Team } from "./Teams/Teams"
 import { TeamList } from "./Teams/TeamList"
 import { TeamProvider } from "./Teams/TeamProvider"
 import { TeamDetails } from "./Teams/TeamDetail"
@@ -31,7 +31,7 @@ export const ApplicationViews = (props) => {
 
                         <Route exact path="/teams" render={props => <TeamList {...props} />} />
                         <Route exact path="/teams/new" render={props => <TeamForm {...props} />} />
-                        <Route path="/teams/:teamId(\d+)" render={
+                        <Route exact path="/teams/:teamId(\d+)" render={
                             props => <TeamDetails {...props} />
                         } />
                     </PlayerProvider>
@@ -42,6 +42,9 @@ export const ApplicationViews = (props) => {
                 <PlayerProvider>
                     <Route path="/players" render={props => <PlayerList {...props} />} />
                     <Route exact path="/players/new" render={props => <PlayerForm {...props} />} />
+                    <Route exact path="/teams/players/:playerId(\d+)" render={
+                            props => <PlayerDetails {...props} />
+                        } />
                 </PlayerProvider>
             </TeamProvider>
 
