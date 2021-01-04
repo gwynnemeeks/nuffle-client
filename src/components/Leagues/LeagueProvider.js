@@ -17,7 +17,7 @@ export const LeagueProvider = (props) => {
     }
 
     const getSingleLeague = (id) => {
-        return fetch(`http://localhost:8000/teams/${id}`, {
+        return fetch(`http://localhost:8000/leagues/${id}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("token")}`
