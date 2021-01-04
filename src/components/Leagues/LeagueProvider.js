@@ -16,6 +16,16 @@ export const LeagueProvider = (props) => {
         .then(setLeagues)
     }
 
+    const getSingleLeague = (id) => {
+        return fetch(`http://localhost:8000/teams/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }})
+        .then(res => res.json())
+        .then(setLeagues)
+    }
+
     const createLeague = leagues => {
         return fetch("http://localhost:8000/leagues", {
             method: "POST",
@@ -29,9 +39,20 @@ export const LeagueProvider = (props) => {
         .then(getLeagues)
     }
 
+    const deleteLeague = (id) => {
+        return fetch(`http://localhost:8000/leagues/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+            .then(getLeagues)
+    }
+
     return (
         <LeagueContext.Provider value={{
-            leagues, getLeagues, createLeague
+            leagues, getLeagues, getSingleLeague, createLeague, deleteLeague
         }}>
             {props.children}
         </LeagueContext.Provider>

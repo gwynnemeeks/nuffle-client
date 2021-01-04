@@ -16,23 +16,23 @@ export const TeamList = (props) => {
     // Handle
 
     // Return
-    return(
+    return (
         <div className="teams">
             <h1>Your Teams</h1>
             <button className="btn btn-light"
-        onClick={() => {
-        props.history.push({ pathname: "/teams/new" })
-        }}
-        >Register New Team</button>
+                onClick={() => {
+                    props.history.push({ pathname: "/teams/new" })
+                }}
+            >Register New Team</button>
 
-        <article className="teamList">
-            {
-                teams.map(tea => {
-                return <Link key={tea.id} to={`/teams/${tea.id}`}>
-                    <h3>{tea.team_name}</h3>
-                    </Link>
-            })
-        }
+            <article className="teamList">
+                {
+                    teams.map(tea => {
+                        return <Link key={tea.id} to={`/teams/${tea.id}`}>
+                            <h3>{tea.team_name}</h3>
+                        </Link>
+                    })
+                }
             </article>
         </div>
     )

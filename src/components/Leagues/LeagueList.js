@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react"
 import { LeagueContext } from "./LeagueProvider"
-import { League } from "./Leagues"
+import { Link } from "react-router-dom"
 import "./Leagues.scss"
 
 export const LeagueList = (props) => {
@@ -11,17 +11,24 @@ export const LeagueList = (props) => {
         getLeagues()
     }, [])
 
-    return(
+    return (
         <div className="leagues">
-             <h1>Your Leagues</h1>
+            <h1>Your Leagues</h1>
             <button className="btn btn-light"
-            onClick={() => {
-            props.history.push({ pathname: "/leagues/new" })
-            }}
+                onClick={() => {
+                    props.history.push({ pathname: "/leagues/new" })
+                }}
             >Register New League</button>
-            {
-                leagues.map(lea => <League key={lea.id} league={lea} />)
-            }
+
+            <article className="leagueList">
+                {
+                    leagues.map(lea => {
+                        return <Link key={lea.id} to={`/leagues/${lea.id}`}>
+                            <h3>{lea.league_name}</h3>
+                        </Link>
+                    })
+                }
+            </article>
         </div>
     )
 }
