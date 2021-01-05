@@ -52,9 +52,20 @@ export const TeamProvider = (props) => {
             .then(getTeams)
     }
 
+    const updateTeam = team => {
+        return fetch(`http://localhost:8000/${team.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+        .then(getTeams)
+    }
+
     return (
         <TeamContext.Provider value={{
-            teams, getTeams, createTeam, getSingleTeam, deleteTeam
+            teams, getTeams, createTeam, getSingleTeam, deleteTeam, updateTeam
         }}>
             {props.children}
         </TeamContext.Provider>
