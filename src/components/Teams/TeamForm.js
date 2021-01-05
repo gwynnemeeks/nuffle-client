@@ -4,7 +4,7 @@ import { TeamContext } from "./TeamProvider.js"
 import { LeagueContext } from "../Leagues/LeagueProvider.js"
 
 export const TeamForm = props => {
-    const { createTeam } = useContext(TeamContext)
+    const { createTeam, updateTeam, teams, getTeams } = useContext(TeamContext)
     const { getLeagues, leagues } = useContext(LeagueContext)
 
     const [currentTeam, setCurrentTeam] = useState({
@@ -17,9 +17,7 @@ export const TeamForm = props => {
         leagueId: 0
     })
 
-    useEffect(() => {
-        getLeagues()
-    }, [])
+    const editMode = props.match.params.hasOwnProperty("teamId")
 
     const handleControlledInputChange = (e) => {
         const newTeamState = Object.assign({}, currentTeam)
@@ -27,64 +25,108 @@ export const TeamForm = props => {
         setCurrentTeam(newTeamState)
     }
 
+    const getTeamInEditMode = () => {
+        if (editMode) {
+            const teamId = parseInt(props.match.params.teamId)
+            const selectedTeam = teams.find(t => t.id === teamId) || {}
+            setCurrentTeam(selectedTeam)
+        }
+    }
+
+    useEffect(() => {
+        getTeams()
+        getLeagues()
+    }, [])
+
+    useEffect(() => {
+        getTeamInEditMode()
+    }, [teams])
+
+    const registerNewTeam = () => {
+        if (editMode) {
+            updateTeam({
+                id: currentTeam.id,
+                teamName: currentTeam.teamName,
+                teamType: currentTeam.teamType,
+                teamRank: parseInt(currentTeam.teamRank),
+                teamValue: parseInt(currentTeam.teamValue),
+                teamRerolls: parseInt(currentTeam.teamRerolls),
+                fanFactor: parseInt(currentTeam.fanFactor),
+                leagueId: parseInt(currentTeam.leagueId)
+            })
+                .then(() => props.history.push("/teams"))
+        } else {
+            createTeam({
+                teamName: currentTeam.teamName,
+                teamType: currentTeam.teamType,
+                teamRank: parseInt(currentTeam.teamRank),
+                teamValue: parseInt(currentTeam.teamValue),
+                teamRerolls: parseInt(currentTeam.teamRerolls),
+                fanFactor: parseInt(currentTeam.fanFactor),
+                leagueId: parseInt(currentTeam.leagueId)
+            })
+                .then(() => props.history.push("/teams"))
+        }
+    }
+
     return (
         <form className="col-6 offset-3">
-        <h2 className="teamForm__teamTitle">Register New Team</h2>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="teamName">Team Name: </label>
-                <input type="text" name="name" required autoFocus className="form-control"
-                    value={currentTeam.teamName}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="teamType">Team Type: </label>
-                <input type="text" name="teamType" required autoFocus className="form-control"
-                    value={currentTeam.teamType}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="teamRank">Team Rank: </label>
-                <input type="text" name="teamRank" required autoFocus className="form-control"
-                    value={currentTeam.teamRank}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="teamValue">Team Value: </label>
-                <input type="text" name="teamValue" required autoFocus className="form-control"
-                    value={currentTeam.teamValue}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="teamRerolls">Team Rerolls: </label>
-                <input type="text" name="teamRerolls" required autoFocus className="form-control"
-                    value={currentTeam.teamRerolls}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="fanFactor">Fan Factor: </label>
-                <input type="text" name="fanFactor" required autoFocus className="form-control"
-                    value={currentTeam.fanFactor}
-                    onChange={handleControlledInputChange}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
+            <h2 className="teamForm__teamTitle">Register New Team</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="teamName">Team Name: </label>
+                    <input type="text" name="name" required autoFocus className="form-control"
+                        value={currentTeam.teamName}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="teamType">Team Type: </label>
+                    <input type="text" name="teamType" required autoFocus className="form-control"
+                        value={currentTeam.teamType}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="teamRank">Team Rank: </label>
+                    <input type="text" name="teamRank" required autoFocus className="form-control"
+                        value={currentTeam.teamRank}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="teamValue">Team Value: </label>
+                    <input type="text" name="teamValue" required autoFocus className="form-control"
+                        value={currentTeam.teamValue}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="teamRerolls">Team Rerolls: </label>
+                    <input type="text" name="teamRerolls" required autoFocus className="form-control"
+                        value={currentTeam.teamRerolls}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="fanFactor">Fan Factor: </label>
+                    <input type="text" name="fanFactor" required autoFocus className="form-control"
+                        value={currentTeam.fanFactor}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="leagueId">League: </label>
                     <select name="leagueId" className="form-control"
@@ -103,22 +145,11 @@ export const TeamForm = props => {
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
-
-                    const team = {
-                        teamName: currentTeam.teamName,
-                        teamType: currentTeam.teamType,
-                        teamRank: parseInt(currentTeam.teamRank),
-                        teamValue: parseInt(currentTeam.teamValue),
-                        teamRerolls: parseInt(currentTeam.teamRerolls),
-                        fanFactor: parseInt(currentTeam.fanFactor),
-                        leagueId: parseInt(currentTeam.leagueId)
-                    }
-
-                    // Send POST request to your API
-                    createTeam(team)
-                    props.history.push("/teams")
+                    registerNewTeam()
                 }}
-                className="btn btn-primary">Create</button>
+                className="btn btn-primary">
+                {editMode ? "Save Changes" : "Register New Team"}
+            </button>
         </form>
     )
 }
