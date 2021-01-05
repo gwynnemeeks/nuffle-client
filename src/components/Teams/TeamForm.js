@@ -40,31 +40,32 @@ export const TeamForm = props => {
 
     useEffect(() => {
         getTeamInEditMode()
-    }, [teams])
+    }, [currentTeam])
 
     const registerNewTeam = () => {
         if (editMode) {
+            debugger
             updateTeam({
                 id: currentTeam.id,
-                teamName: currentTeam.teamName,
-                teamType: currentTeam.teamType,
-                teamRank: parseInt(currentTeam.teamRank),
-                teamValue: parseInt(currentTeam.teamValue),
-                teamRerolls: parseInt(currentTeam.teamRerolls),
-                fanFactor: parseInt(currentTeam.fanFactor),
-                leagueId: parseInt(currentTeam.leagueId),
+                teamName: currentTeam.team_name,
+                teamType: currentTeam.team_type,
+                teamRank: parseInt(currentTeam.team_rank),
+                teamValue: parseInt(currentTeam.team_value),
+                teamRerolls: parseInt(currentTeam.team_rerolls),
+                fanFactor: parseInt(currentTeam.fan_factor),
+                leagueId: parseInt(currentTeam.league),
                 coach: parseInt(localStorage.getItem("token"))
             })
-                .then(() => props.history.push("/teams"))
+                .then(() => props.history.push(`/teams/${currentTeam.id}`))
         } else {
             createTeam({
-                teamName: currentTeam.teamName,
-                teamType: currentTeam.teamType,
-                teamRank: parseInt(currentTeam.teamRank),
-                teamValue: parseInt(currentTeam.teamValue),
-                teamRerolls: parseInt(currentTeam.teamRerolls),
-                fanFactor: parseInt(currentTeam.fanFactor),
-                leagueId: parseInt(currentTeam.leagueId),
+                teamName: currentTeam.team_name,
+                teamType: currentTeam.team_type,
+                teamRank: parseInt(currentTeam.team_rank),
+                teamValue: parseInt(currentTeam.team_value),
+                teamRerolls: parseInt(currentTeam.team_rerolls),
+                fanFactor: parseInt(currentTeam.fan_factor),
+                leagueId: parseInt(currentTeam.league),
                 coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/teams"))
