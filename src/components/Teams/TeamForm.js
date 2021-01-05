@@ -76,6 +76,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamName">Team Name: </label>
                     <input type="text" name="name" required autoFocus className="form-control"
+                        placeholder="Team Name Here"
                         value={currentTeam.teamName}
                         onChange={handleControlledInputChange}
                     />
@@ -85,6 +86,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamType">Team Type: </label>
                     <input type="text" name="teamType" required autoFocus className="form-control"
+                        placeholder="Team Race"
                         value={currentTeam.teamType}
                         onChange={handleControlledInputChange}
                     />
@@ -94,6 +96,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamRank">Team Rank: </label>
                     <input type="text" name="teamRank" required autoFocus className="form-control"
+                        placeholder="How much are you winning?"
                         value={currentTeam.teamRank}
                         onChange={handleControlledInputChange}
                     />
@@ -103,6 +106,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamValue">Team Value: </label>
                     <input type="text" name="teamValue" required autoFocus className="form-control"
+                        placeholder="What are you worth?"
                         value={currentTeam.teamValue}
                         onChange={handleControlledInputChange}
                     />
@@ -112,6 +116,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamRerolls">Team Rerolls: </label>
                     <input type="text" name="teamRerolls" required autoFocus className="form-control"
+                        placeholder="How often can you turn back time?"
                         value={currentTeam.teamRerolls}
                         onChange={handleControlledInputChange}
                     />
@@ -121,6 +126,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="fanFactor">Fan Factor: </label>
                     <input type="text" name="fanFactor" required autoFocus className="form-control"
+                        placeholder="Do fans even like you?"
                         value={currentTeam.fanFactor}
                         onChange={handleControlledInputChange}
                     />
