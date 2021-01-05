@@ -39,10 +39,10 @@ export const LeagueForm = props => {
         if (editMode) {
             updateLeague({
                 id: leagues.id,
-                leagueName: leagues.leagueName,
+                leagueName: leagues.league_name,
                 coach: parseInt(localStorage.getItem("token"))
             })
-                .then(() => props.history.push("/leagues"))
+                .then(() => props.history.push(`/leagues/${leagues.id}`))
 
         } else {
             createLeague({
