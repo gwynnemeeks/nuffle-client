@@ -52,7 +52,8 @@ export const TeamForm = props => {
                 teamValue: parseInt(currentTeam.teamValue),
                 teamRerolls: parseInt(currentTeam.teamRerolls),
                 fanFactor: parseInt(currentTeam.fanFactor),
-                leagueId: parseInt(currentTeam.leagueId)
+                leagueId: parseInt(currentTeam.leagueId),
+                coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/teams"))
         } else {
@@ -63,7 +64,8 @@ export const TeamForm = props => {
                 teamValue: parseInt(currentTeam.teamValue),
                 teamRerolls: parseInt(currentTeam.teamRerolls),
                 fanFactor: parseInt(currentTeam.fanFactor),
-                leagueId: parseInt(currentTeam.leagueId)
+                leagueId: parseInt(currentTeam.leagueId),
+                coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/teams"))
         }
@@ -86,7 +88,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamType">Team Type: </label>
                     <input type="text" name="teamType" required autoFocus className="form-control"
-                        placeholder="Team Race"
+                        placeholder="Orcs, Elves, or Halflings?"
                         value={currentTeam.teamType}
                         onChange={handleControlledInputChange}
                     />

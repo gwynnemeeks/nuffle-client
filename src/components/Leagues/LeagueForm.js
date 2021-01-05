@@ -46,8 +46,7 @@ export const LeagueForm = props => {
 
         } else {
             createLeague({
-                leagueName: leagues.leagueName,
-                coach: parseInt(localStorage.getItem("token"))
+                leagueName: leagues.leagueName
             })
                 .then(() => props.history.push("/leagues"))
         }
