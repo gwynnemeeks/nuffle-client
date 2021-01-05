@@ -44,7 +44,7 @@ export const TeamForm = props => {
 
     const registerNewTeam = () => {
         if (editMode) {
-            debugger
+            // debugger
             updateTeam({
                 id: currentTeam.id,
                 teamName: currentTeam.team_name,
