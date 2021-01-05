@@ -71,7 +71,7 @@ export const TeamForm = props => {
 
     return (
         <form className="col-6 offset-3">
-            <h2 className="teamForm__teamTitle">Register New Team</h2>
+            <h2 className="teamForm__teamTitle">{editMode ? "Update Team" : "Register New Team"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamName">Team Name: </label>
