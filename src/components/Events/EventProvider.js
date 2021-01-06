@@ -15,6 +15,17 @@ export const EventProvider = (props) => {
         .then(setEvents)
     }
 
+    const getSingleEvent = (id) => {
+        return fetch(`http://localhost:8000/events/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(setEvents)
+    }
+
     const createEvent = event => {
         return fetch("http://localhost:8000/events", {
             method: "POST",
@@ -28,9 +39,32 @@ export const EventProvider = (props) => {
         .then(getEvents)
     }
 
+    const deleteEvent = (id) => {
+        return fetch(`http://localhost:8000/events/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+            .then(getEvents)
+    }
+
+    const updateEvent = event => {
+        return fetch(`http://localhost:8000/events/${event.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(event)
+        })
+            .then(getEvents)
+    }
+
     return (
         <EventContext.Provider value={{
-            events, getEvents, createEvent
+            events, getEvents, createEvent, getSingleEvent, deleteEvent, updateEvent
         }}>
             {props.children}
         </EventContext.Provider>
