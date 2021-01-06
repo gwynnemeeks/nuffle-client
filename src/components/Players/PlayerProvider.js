@@ -48,6 +48,17 @@ export const PlayerProvider = (props) => {
         .then(getPlayers)
     }
 
+    const deletePlayer = (id) => {
+        return fetch(`http://localhost:8000/players/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+        })
+            .then(getPlayers)
+    }
+
     const updatePlayer = player => {
         return fetch(`http://localhost:8000/players/${player.id}`, {
             method: "PUT",
@@ -62,7 +73,7 @@ export const PlayerProvider = (props) => {
 
     return (
         <PlayerContext.Provider value={{
-            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer, updatePlayer
+            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer, updatePlayer, deletePlayer
         }}>
             {props.children}
         </PlayerContext.Provider>
