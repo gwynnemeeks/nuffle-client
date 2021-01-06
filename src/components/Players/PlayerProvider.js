@@ -48,9 +48,21 @@ export const PlayerProvider = (props) => {
         .then(getPlayers)
     }
 
+    const updatePlayer = player => {
+        return fetch(`http://localhost:8000/players/${player.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(player)
+        })
+            .then(getPlayers)
+    }
+
     return (
         <PlayerContext.Provider value={{
-            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer
+            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer, updatePlayer
         }}>
             {props.children}
         </PlayerContext.Provider>
