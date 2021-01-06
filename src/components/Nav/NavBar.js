@@ -17,6 +17,11 @@ export const NavBar = (props) => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/leagues">Leagues</Link>
             </li>
+            <div className="navbar__item fakelink"
+                onClick={() => {
+                    localStorage.removeItem("token")
+                    props.history.push({ pathname: "/"})
+                }}>Logout</div>
         </nav>
     )
 }

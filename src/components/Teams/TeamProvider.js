@@ -13,9 +13,9 @@ export const TeamProvider = (props) => {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
             }
-    })
-        .then(response => response.json())
-        .then(setTeams)
+        })
+            .then(response => response.json())
+            .then(setTeams)
     }
 
     const getSingleTeam = (id) => {
@@ -23,9 +23,10 @@ export const TeamProvider = (props) => {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("token")}`
-        }})
-        .then(res => res.json())
-        .then(setTeams)
+            }
+        })
+            .then(res => res.json())
+            .then(setTeams)
     }
 
     const createTeam = team => {
@@ -37,8 +38,8 @@ export const TeamProvider = (props) => {
             },
             body: JSON.stringify(team)
         })
-        .then(response => response.json())
-        .then(getTeams)
+            .then(response => response.json())
+            .then(getTeams)
     }
 
     const deleteTeam = (id) => {
@@ -52,9 +53,21 @@ export const TeamProvider = (props) => {
             .then(getTeams)
     }
 
+    const updateTeam = team => {
+        return fetch(`http://localhost:8000/teams/${team.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(team)
+        })
+            .then(getTeams)
+    }
+
     return (
         <TeamContext.Provider value={{
-            teams, getTeams, createTeam, getSingleTeam, deleteTeam
+            teams, getTeams, createTeam, getSingleTeam, deleteTeam, updateTeam
         }}>
             {props.children}
         </TeamContext.Provider>

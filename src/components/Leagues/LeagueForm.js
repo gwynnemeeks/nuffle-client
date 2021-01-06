@@ -32,22 +32,22 @@ export const LeagueForm = props => {
 
     useEffect(() => {
         getLeagueInEditMode()
-    }, [leagues])
+    }, [currentLeague])
 
     const createNewLeague = () => {
         
         if (editMode) {
+            // debugger
             updateLeague({
                 id: leagues.id,
-                leagueName: leagues.leagueName,
+                leagueName: leagues.league_name,
                 coach: parseInt(localStorage.getItem("token"))
             })
-                .then(() => props.history.push("/leagues"))
+                .then(() => props.history.push(`/leagues/${leagues.id}`))
 
         } else {
             createLeague({
-                leagueName: leagues.leagueName,
-                coach: parseInt(localStorage.getItem("token"))
+                leagueName: leagues.league_name
             })
                 .then(() => props.history.push("/leagues"))
         }
