@@ -5,6 +5,7 @@ import { Route } from "react-router-dom"
 
 import { EventList } from "./Events/EventList"
 import { EventProvider } from "./Events/EventProvider"
+import { EventDetails } from "./Events/EventDetail"
 
 import { LeagueList } from "./Leagues/LeagueList"
 import { LeagueProvider } from "./Leagues/LeagueProvider"
@@ -36,7 +37,7 @@ export const ApplicationViews = (props) => {
                             props => <TeamDetails {...props} />
                         } />
                         <Route exact path="/teams/edit/:teamId(\d+)" render={
-                    props => <TeamForm {...props} />
+                            props => <TeamForm {...props} />
                         } />
                     </PlayerProvider>
                 </LeagueProvider>
@@ -47,14 +48,20 @@ export const ApplicationViews = (props) => {
                     <Route path="/players" render={props => <PlayerList {...props} />} />
                     <Route exact path="/players/new" render={props => <PlayerForm {...props} />} />
                     <Route exact path="/teams/players/:playerId(\d+)" render={
-                            props => <PlayerDetails {...props} />
-                        } />
+                        props => <PlayerDetails {...props} />
+                    } />
                 </PlayerProvider>
             </TeamProvider>
 
             <EventProvider>
-                <Route path="/events" render={props => <EventList {...props} />} />
+                <Route exact path="/events" render={props => <EventList {...props} />} />
                 <Route exact path="/events/new" render={props => <EventForm {...props} />} />
+                <Route exact path="/events/:eventId(\d+)" render={
+                    props => <EventDetails {...props} />
+                } />
+                <Route exact path="/events/edit/:eventId(\d+)" render={
+                            props => <EventForm {...props} />
+                        } />
             </EventProvider>
 
 
@@ -64,11 +71,11 @@ export const ApplicationViews = (props) => {
                     return <LeagueForm {...props} />
                 }} />
                 <Route exact path="/leagues/:leagueId(\d+)" render={
-                        props => <LeagueDetails {...props} />
-                        } />
+                    props => <LeagueDetails {...props} />
+                } />
                 <Route exact path="/leagues/edit/:leagueId(\d+)" render={
                     props => <LeagueForm {...props} />
-                        } />
+                } />
             </LeagueProvider>
         </>
     )
