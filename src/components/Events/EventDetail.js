@@ -20,7 +20,7 @@ export const EventDetails = (props) => {
             <h3 className="event__event_schedule">{events.event_schedule}</h3>
             <p className="event__location">{events.location}</p>
             <p className="event__day_time">{events.day} @ {events.time}</p>
-            <button className="btn btn-light" onClick={() => deleteEvent(events.id).then(() => props.history.push("/events"))} >Delete Team</button>
+            <button className="btn btn-light" onClick={() => deleteEvent(events.id).then(() => props.history.push("/events"))} >Delete Event</button>
             <button className="btn btn-dark" onClick={() => {props.history.push(`/events/edit/${events.id}`)}}>Edit Event</button>
         </section>
         </>

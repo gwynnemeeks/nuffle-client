@@ -20,6 +20,7 @@ export const EventList = (props) => {
                     props.history.push({ pathname: "/events/new" })
                 }}
             >Register New Event</button>
+            
             <article className="eventList">
                 {
                     events.map(eve => {
