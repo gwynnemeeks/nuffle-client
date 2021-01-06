@@ -66,7 +66,6 @@ export const TeamForm = props => {
                 teamRerolls: parseInt(currentTeam.team_rerolls),
                 fanFactor: parseInt(currentTeam.fan_factor),
                 leagueId: parseInt(currentTeam.league),
-                coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push("/teams"))
         }
