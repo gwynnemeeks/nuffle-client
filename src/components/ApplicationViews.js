@@ -5,6 +5,7 @@ import { Route } from "react-router-dom"
 
 import { EventList } from "./Events/EventList"
 import { EventProvider } from "./Events/EventProvider"
+import { EventDetails } from "./Events/EventDetail"
 
 import { LeagueList } from "./Leagues/LeagueList"
 import { LeagueProvider } from "./Leagues/LeagueProvider"
@@ -55,6 +56,9 @@ export const ApplicationViews = (props) => {
             <EventProvider>
                 <Route path="/events" render={props => <EventList {...props} />} />
                 <Route exact path="/events/new" render={props => <EventForm {...props} />} />
+                <Route exact path="/events/:eventId(\d+)" render={
+                            props => <EventDetails {...props} />
+                        } />
             </EventProvider>
 
 
