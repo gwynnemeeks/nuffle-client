@@ -39,6 +39,7 @@ export const EventForm = props => {
 
     const registerNewEvent = () => {
         if (editMode) {
+            // debugger
             updateEvent({
                 id: createEvent.id,
                 day: currentEvent.day,
