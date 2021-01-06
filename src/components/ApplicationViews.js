@@ -46,7 +46,7 @@ export const ApplicationViews = (props) => {
             <TeamProvider>
                 <PlayerProvider>
                     <Route path="/players" render={props => <PlayerList {...props} />} />
-                    <Route exact path="/players/new" render={props => <PlayerForm {...props} />} />
+                    <Route exact path="/teams/players/new" render={props => <PlayerForm {...props} />} />
                     <Route exact path="/teams/players/:playerId(\d+)" render={
                         props => <PlayerDetails {...props} />
                     } />

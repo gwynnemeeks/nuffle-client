@@ -9,7 +9,7 @@ import { TeamContext } from "./TeamProvider"
 
 export const TeamDetails = (props) => {
     const { teams, getSingleTeam, deleteTeam } = useContext(TeamContext)
-    const { players, getPlayersByTeamId } = useContext(PlayerContext)
+    const { players, getPlayersByTeamId, createPlayer } = useContext(PlayerContext)
 
     const [setTeam] = useState()
     // {coach: {}, league: {}}
@@ -34,6 +34,7 @@ export const TeamDetails = (props) => {
             <p className="team__team_value">Valued at: {teams.team_value} GP</p>
             <button className="btn btn-light" onClick={() => deleteTeam(teams.id).then(() => props.history.push("/teams"))} >Delete Team</button>
             <button className="btn btn-dark" onClick={() => {props.history.push(`/teams/edit/${teams.id}`)}}>Edit Team</button>
+            <button className="btn btn-warning" onClick={() => createPlayer(players.id).then(() => props.history.push("/teams/players/new"))} >Create Player</button>
             {
                 players.map(play => {
                     return <Link key={play.id} to={`players/${play.id}`}>
