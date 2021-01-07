@@ -4,11 +4,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { LeagueContext } from "./LeagueProvider"
 
 export const LeagueForm = props => {
-    const { createLeague, updateLeague, leagues, getLeagues } = useContext(LeagueContext)
+    const { createLeague, updateLeague, leagues, getLeagues, singleLeague } = useContext(LeagueContext)
 
-    const [currentLeague, setCurrentLeague] = useState({
-        leagueName: ""
-    })
+    const [currentLeague, setCurrentLeague] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("leagueId")
 
@@ -21,8 +19,8 @@ export const LeagueForm = props => {
     const getLeagueInEditMode = () => {
         if (editMode) {
             const leagueId = parseInt(props.match.params.leagueId)
-            const selectedLeague = leagues.find(l => l.id === leagueId) || {}
-            setCurrentLeague(selectedLeague)
+            const singleLeague = leagues.find(l => l.id === leagueId) || {}
+            setCurrentLeague(singleLeague)
         }
     }
 
@@ -32,26 +30,25 @@ export const LeagueForm = props => {
 
     useEffect(() => {
         getLeagueInEditMode()
-    }, [currentLeague])
+    }, [singleLeague])
 
     const createNewLeague = () => {
-        
+
         if (editMode) {
             // debugger
             updateLeague({
-                id: leagues.id,
-                leagueName: leagues.league_name,
+                id: currentLeague.id,
+                leagueName: currentLeague.league_name,
                 coach: parseInt(localStorage.getItem("token"))
             })
-                .then(() => props.history.push(`/leagues/${leagues.id}`))
+                .then(() => props.history.push(`/leagues/${currentLeague.id}`))
 
         } else {
-            createLeague({
-                leagueName: leagues.league_name
-            })
+            createLeague(currentLeague)
                 .then(() => props.history.push("/leagues"))
         }
     }
+
 
     return (
         <form className="col-6 offset-3">
@@ -59,8 +56,8 @@ export const LeagueForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="leagueName">League Name: </label>
-                    <input type="text" name="leagueName" required autoFocus className="form-control"
-                        value={currentLeague.leagueName}
+                    <input type="text" name="league_name" required autoFocus className="form-control"
+                        defaultValue={currentLeague.league_name}
                         onChange={handleControlledInputChange}
                     />
                 </div>

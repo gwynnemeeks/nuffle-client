@@ -3,15 +3,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { EventContext } from "./EventProvider"
 
 export const EventForm = props => {
-    const { createEvent, updateEvent, events, getEvents } = useContext(EventContext)
+    const { createEvent, updateEvent, events, getEvents, singleEvent } = useContext(EventContext)
 
-    const [currentEvent, setCurrentEvent] = useState({
-        day: "",
-        time: "",
-        location: "",
-        finalScore: "",
-        eventSchedule: ""
-    })
+    const [currentEvent, setCurrentEvent] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("eventId")
 
@@ -24,8 +18,8 @@ export const EventForm = props => {
     const getEventInEditMode = () => {
         if (editMode) {
             const eventId = parseInt(props.match.params.eventId)
-            const selectedEvent = events.find(e => e.id === eventId) || {}
-            setCurrentEvent(selectedEvent)
+            const singleEvent = events.find(e => e.id === eventId) || {}
+            setCurrentEvent(singleEvent)
         }
     }
 
@@ -35,13 +29,12 @@ export const EventForm = props => {
 
     useEffect(() => {
         getEventInEditMode()
-    }, [currentEvent])
+    }, [singleEvent])
 
     const registerNewEvent = () => {
         if (editMode) {
-            // debugger
             updateEvent({
-                id: createEvent.id,
+                id: currentEvent.id,
                 day: currentEvent.day,
                 time: currentEvent.time,
                 location: currentEvent.location,
@@ -52,13 +45,7 @@ export const EventForm = props => {
                 .then(() => props.history.push(`/events/${currentEvent.id}`))
 
         } else {
-            createEvent({
-                day: currentEvent.day,
-                time: currentEvent.time,
-                location: currentEvent.location,
-                finalScore: currentEvent.finalScore,
-                eventSchedule: currentEvent.eventSchedule
-            })
+            createEvent(currentEvent)
                 .then(() => props.history.push("/events"))
         }
     }
@@ -70,7 +57,7 @@ export const EventForm = props => {
                 <div className="form-group">
                     <label htmlFor="day">Event Day: </label>
                     <input type="text" name="day" required autoFocus className="form-control"
-                        value={currentEvent.day}
+                        defaultValue={currentEvent.day}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -79,7 +66,7 @@ export const EventForm = props => {
                 <div className="form-group">
                     <label htmlFor="time">Event Time: </label>
                     <input type="text" name="time" required autoFocus className="form-control"
-                        value={currentEvent.time}
+                        defaultValue={currentEvent.time}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -88,7 +75,7 @@ export const EventForm = props => {
                 <div className="form-group">
                     <label htmlFor="location">Event Location: </label>
                     <input type="text" name="location" required autoFocus className="form-control"
-                        value={currentEvent.location}
+                        defaultValue={currentEvent.location}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -96,8 +83,8 @@ export const EventForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="finalScore">Event Final Score: </label>
-                    <input type="text" name="finalScore" required autoFocus className="form-control"
-                        value={currentEvent.finalScore}
+                    <input type="text" name="final_score" required autoFocus className="form-control"
+                        defaultValue={currentEvent.final_score}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -105,8 +92,8 @@ export const EventForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="eventSchedule">Event Event Schedule: </label>
-                    <input type="text" name="eventSchedule" required autoFocus className="form-control"
-                        value={currentEvent.eventSchedule}
+                    <input type="text" name="event_schedule" required autoFocus className="form-control"
+                        defaultValue={currentEvent.event_schedule}
                         onChange={handleControlledInputChange}
                     />
                 </div>

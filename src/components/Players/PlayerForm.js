@@ -4,21 +4,10 @@ import { PlayerContext } from "./PlayerProvider.js"
 import { TeamContext } from "../Teams/TeamProvider.js"
 
 export const PlayerForm = props => {
-    const { createPlayer, updatePlayer, getPlayers, players } = useContext(PlayerContext)
+    const { createPlayer, updatePlayer, getPlayers, players, singlePlayer } = useContext(PlayerContext)
     const { getTeams, teams } = useContext(TeamContext)
 
-    const [currentPlayer, setCurrentPlayer] = useState({
-        name: "",
-        position: "",
-        movement: 0,
-        strength: 0,
-        agility: 0,
-        armorValue: 0,
-        skills: "",
-        cost: 0,
-        history: "",
-        teamId: 0
-    })
+    const [currentPlayer, setCurrentPlayer] = useState({team: {}})
 
     const editMode = props.match.params.hasOwnProperty("playerId")
 
@@ -31,8 +20,8 @@ export const PlayerForm = props => {
     const getPlayerInEditMode = () => {
         if (editMode) {
             const playerId = parseInt(props.match.params.playerId)
-            const selectedPlayer = players.find(p => p.id === playerId) || {}
-            setCurrentPlayer(selectedPlayer)
+            const singlePlayer = players.find(p => p.id === playerId) || {}
+            setCurrentPlayer(singlePlayer)
         }
     }
 
@@ -43,7 +32,7 @@ export const PlayerForm = props => {
 
     useEffect(() => {
         getPlayerInEditMode()
-    }, [currentPlayer])
+    }, [singlePlayer])
 
     const createNewPlayer = () => {
         if (editMode) {
@@ -58,24 +47,13 @@ export const PlayerForm = props => {
                 skills: currentPlayer.skills,
                 cost: parseInt(currentPlayer.cost),
                 history: currentPlayer.history,
-                teamId: parseInt(currentPlayer.teamId)
+                teamId: parseInt(currentPlayer.team.id)
 
             })
                 .then(() => props.history.push(`/teams/players/${currentPlayer.id}`))
 
         } else {
-            createPlayer({
-                name: currentPlayer.name,
-                position: currentPlayer.position,
-                movement: parseInt(currentPlayer.movement),
-                strength: parseInt(currentPlayer.strength),
-                agility: parseInt(currentPlayer.agility),
-                armorValue: parseInt(currentPlayer.armorValue),
-                skills: currentPlayer.skills,
-                cost: parseInt(currentPlayer.cost),
-                history: currentPlayer.history,
-                teamId: parseInt(currentPlayer.teamId)
-            })
+            createPlayer(currentPlayer)
                 .then(() => props.history.push("/players"))
         }
     }
@@ -87,7 +65,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="playerName">Player Name: </label>
                     <input type="text" name="name" required autoFocus className="form-control"
-                        value={currentPlayer.name}
+                        defaultValue={currentPlayer.name}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -96,7 +74,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="position">Player Position: </label>
                     <input type="text" name="position" required autoFocus className="form-control"
-                        value={currentPlayer.position}
+                        defaultValue={currentPlayer.position}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -105,7 +83,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="movement">Player Movement: </label>
                     <input type="text" name="movement" required autoFocus className="form-control"
-                        value={currentPlayer.movement}
+                        defaultValue={currentPlayer.movement}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -114,7 +92,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="strength">Player Strength: </label>
                     <input type="text" name="strength" required autoFocus className="form-control"
-                        value={currentPlayer.strength}
+                        defaultValue={currentPlayer.strength}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -123,7 +101,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="agility">Player Agility: </label>
                     <input type="text" name="agility" required autoFocus className="form-control"
-                        value={currentPlayer.agility}
+                        defaultValue={currentPlayer.agility}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -132,7 +110,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="armorValue">Armor Value: </label>
                     <input type="text" name="armorValue" required autoFocus className="form-control"
-                        value={currentPlayer.armorValue}
+                        defaultValue={currentPlayer.armor_value}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -141,7 +119,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="skills">Player Skills: </label>
                     <input type="text" name="skills" required autoFocus className="form-control"
-                        value={currentPlayer.skills}
+                        defaultValue={currentPlayer.skills}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -150,7 +128,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="cost">Player Cost: </label>
                     <input type="text" name="cost" required autoFocus className="form-control"
-                        value={currentPlayer.cost}
+                        defaultValue={currentPlayer.cost}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -159,7 +137,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="history">Player History: </label>
                     <input type="text" name="history" required autoFocus className="form-control"
-                        value={currentPlayer.history}
+                        defaultValue={currentPlayer.history}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -168,7 +146,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamId">Team: </label>
                     <select name="teamId" className="form-control"
-                        value={currentPlayer.teamId}
+                        defaultValue={currentPlayer.team && currentPlayer.team.id}
                         onChange={handleControlledInputChange}>
                         <option value="0">Select a team</option>
                         {
@@ -181,7 +159,6 @@ export const PlayerForm = props => {
             </fieldset>
             <button type="submit"
                 onClick={evt => {
-                    // Prevent form from being submitted
                     evt.preventDefault()
                     createNewPlayer()
 

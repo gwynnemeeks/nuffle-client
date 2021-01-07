@@ -36,15 +36,8 @@ export const TeamForm = props => {
         getTeamInEditMode()
     }, [teams])
 
-    // useEffect(() => {
-    //     if (editMode) {
-    //         setCurrentTeam(teams)
-    //     }
-    // }, [])
-
-    const registerNewTeam = () => {
+        const registerNewTeam = () => {
         if (editMode) {
-            // debugger
             updateTeam({
                 id: currentTeam.id,
                 teamName: currentTeam.team_name,

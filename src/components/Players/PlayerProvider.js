@@ -4,6 +4,7 @@ export const PlayerContext = React.createContext()
 
 export const PlayerProvider = (props) => {
     const [players, setPlayers] = useState([{name: ''}])
+    const [singlePlayer, setSinglePlayer] = useState({})
 
     const getPlayers = () => {
         return fetch("http://localhost:8000/players", {
@@ -32,7 +33,7 @@ export const PlayerProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("token")}`
         }})
         .then(res => res.json())
-        .then(setPlayers)
+        .then(setSinglePlayer)
     }
 
     const createPlayer = player => {
@@ -73,7 +74,7 @@ export const PlayerProvider = (props) => {
 
     return (
         <PlayerContext.Provider value={{
-            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer, updatePlayer, deletePlayer
+            players, getPlayers, createPlayer, getPlayersByTeamId, getSinglePlayer, updatePlayer, deletePlayer, singlePlayer
         }}>
             {props.children}
         </PlayerContext.Provider>

@@ -4,6 +4,7 @@ export const LeagueContext = React.createContext()
 
 export const LeagueProvider = (props) => {
     const [leagues, setLeagues] = useState([])
+    const [singleLeague, setSingleLeague] = useState({})
 
     const getLeagues = () => {
         return fetch("http://localhost:8000/leagues", {
@@ -23,7 +24,7 @@ export const LeagueProvider = (props) => {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }})
         .then(res => res.json())
-        .then(setLeagues)
+        .then(setSingleLeague)
     }
 
     const createLeague = leagues => {
@@ -64,7 +65,7 @@ export const LeagueProvider = (props) => {
 
     return (
         <LeagueContext.Provider value={{
-            leagues, getLeagues, getSingleLeague, createLeague, deleteLeague, updateLeague
+            leagues, getLeagues, getSingleLeague, createLeague, deleteLeague, updateLeague, singleLeague
         }}>
             {props.children}
         </LeagueContext.Provider>
