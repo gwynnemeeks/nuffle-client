@@ -17,7 +17,6 @@ export const LeagueForm = props => {
     }
 
     const getLeagueInEditMode = () => {
-        // debugger
         if (editMode) {
             const leagueId = parseInt(props.match.params.leagueId)
             const singleLeague = leagues.find(l => l.id === leagueId) || {}

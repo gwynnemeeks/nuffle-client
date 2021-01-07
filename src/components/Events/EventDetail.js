@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from "react"
 import { EventContext } from "./EventProvider"
 
 export const EventDetails = (props) => {
-    const { getSingleEvent, deleteEvent, singleEvent } = useContext(EventContext)
+    const {  getSingleEvent, deleteEvent, singleEvent } = useContext(EventContext)
 
     useEffect(() => {
         const eventId = parseInt(props.match.params.eventId)

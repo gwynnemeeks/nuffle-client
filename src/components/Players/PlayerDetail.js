@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from "react"
 import { PlayerContext } from "../Players/PlayerProvider"
 
 export const PlayerDetails = (props) => {
-    const { players, getSinglePlayer, deletePlayer, singlePlayer } = useContext(PlayerContext)
+    const { getSinglePlayer, deletePlayer, singlePlayer } = useContext(PlayerContext)
 
     useEffect(() => {
         const playerId = parseInt(props.match.params.playerId)
@@ -23,7 +23,7 @@ export const PlayerDetails = (props) => {
                 <li className="list-group-item">ST: {singlePlayer.strength}</li>
                 <li className="list-group-item">MV: {singlePlayer.movement}</li>
             </ul>
-            <button className="btn btn-light" onClick={() => deletePlayer(players.id).then(() => props.history.push("/players"))} >Delete Player</button>
+            <button className="btn btn-light" onClick={() => deletePlayer(singlePlayer.id).then(() => props.history.push("/players"))} >Delete Player</button>
             <button className="btn btn-dark" onClick={() => {props.history.push(`/teams/players/edit/${singlePlayer.id}`)}}>Edit Player</button>
         </section>
         </>
