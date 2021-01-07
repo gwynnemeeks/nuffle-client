@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { LeagueContext } from "./LeagueProvider"
 
 export const LeagueForm = props => {
-    const { createLeague, updateLeague, leagues, getLeagues } = useContext(LeagueContext)
+    const { createLeague, updateLeague, leagues, getLeagues, singleLeague } = useContext(LeagueContext)
 
     const [currentLeague, setCurrentLeague] = useState({})
 
@@ -20,8 +20,8 @@ export const LeagueForm = props => {
         // debugger
         if (editMode) {
             const leagueId = parseInt(props.match.params.leagueId)
-            const selectedLeague = leagues.find(l => l.id === leagueId) || {}
-            setCurrentLeague(selectedLeague)
+            const singleLeague = leagues.find(l => l.id === leagueId) || {}
+            setCurrentLeague(singleLeague)
         }
     }
 
@@ -31,7 +31,7 @@ export const LeagueForm = props => {
 
     useEffect(() => {
         getLeagueInEditMode()
-    }, [currentLeague])
+    }, [singleLeague])
 
     const createNewLeague = () => {
 
