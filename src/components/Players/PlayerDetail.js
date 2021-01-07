@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 
 
 import { PlayerContext } from "../Players/PlayerProvider"
 
 export const PlayerDetails = (props) => {
     const { players, getSinglePlayer, deletePlayer, singlePlayer } = useContext(PlayerContext)
-
-    // const [setPlayer] = useState()
 
     useEffect(() => {
         const playerId = parseInt(props.match.params.playerId)
