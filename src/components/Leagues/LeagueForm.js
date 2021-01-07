@@ -6,9 +6,7 @@ import { LeagueContext } from "./LeagueProvider"
 export const LeagueForm = props => {
     const { createLeague, updateLeague, leagues, getLeagues } = useContext(LeagueContext)
 
-    const [currentLeague, setCurrentLeague] = useState({
-        leagueName: ""
-    })
+    const [currentLeague, setCurrentLeague] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("leagueId")
 
@@ -19,6 +17,7 @@ export const LeagueForm = props => {
     }
 
     const getLeagueInEditMode = () => {
+        // debugger
         if (editMode) {
             const leagueId = parseInt(props.match.params.leagueId)
             const selectedLeague = leagues.find(l => l.id === leagueId) || {}
@@ -35,7 +34,7 @@ export const LeagueForm = props => {
     }, [currentLeague])
 
     const createNewLeague = () => {
-        
+
         if (editMode) {
             // debugger
             updateLeague({
@@ -60,7 +59,7 @@ export const LeagueForm = props => {
                 <div className="form-group">
                     <label htmlFor="leagueName">League Name: </label>
                     <input type="text" name="leagueName" required autoFocus className="form-control"
-                        value={currentLeague.leagueName}
+                        defaultValue={currentLeague.league_name}
                         onChange={handleControlledInputChange}
                     />
                 </div>

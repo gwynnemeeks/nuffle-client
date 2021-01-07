@@ -4,7 +4,7 @@ import { PlayerContext } from "./PlayerProvider.js"
 import { TeamContext } from "../Teams/TeamProvider.js"
 
 export const PlayerForm = props => {
-    const { createPlayer, updatePlayer, getPlayers, players } = useContext(PlayerContext)
+    const { createPlayer, updatePlayer, getPlayers, players, singlePlayer } = useContext(PlayerContext)
     const { getTeams, teams } = useContext(TeamContext)
 
     const [currentPlayer, setCurrentPlayer] = useState({team: {}})
@@ -20,8 +20,8 @@ export const PlayerForm = props => {
     const getPlayerInEditMode = () => {
         if (editMode) {
             const playerId = parseInt(props.match.params.playerId)
-            const selectedPlayer = players.find(p => p.id === playerId) || {}
-            setCurrentPlayer(selectedPlayer)
+            const singlePlayer = players.find(p => p.id === playerId) || {}
+            setCurrentPlayer(singlePlayer)
         }
     }
 
@@ -32,7 +32,7 @@ export const PlayerForm = props => {
 
     useEffect(() => {
         getPlayerInEditMode()
-    }, [currentPlayer])
+    }, [singlePlayer])
 
     const createNewPlayer = () => {
         if (editMode) {
@@ -146,7 +146,7 @@ export const PlayerForm = props => {
                 <div className="form-group">
                     <label htmlFor="teamId">Team: </label>
                     <select name="teamId" className="form-control"
-                        defaultValue={currentPlayer.team.id}
+                        defaultValue={currentPlayer.team && currentPlayer.team.id}
                         onChange={handleControlledInputChange}>
                         <option value="0">Select a team</option>
                         {
