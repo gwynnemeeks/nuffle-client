@@ -4,18 +4,10 @@ import { TeamContext } from "./TeamProvider.js"
 import { LeagueContext } from "../Leagues/LeagueProvider.js"
 
 export const TeamForm = props => {
-    const { createTeam, updateTeam, teams, getTeams } = useContext(TeamContext)
+    const { createTeam, updateTeam, getTeams, teams } = useContext(TeamContext)
     const { getLeagues, leagues } = useContext(LeagueContext)
 
-    const [currentTeam, setCurrentTeam] = useState({
-        teamName: "",
-        teamType: "",
-        teamRank: 0,
-        teamValue: 0,
-        teamRerolls: 0,
-        fanFactor: 0,
-        leagueId: 0
-    })
+    const [currentTeam, setCurrentTeam] = useState({league: {}})
 
     const editMode = props.match.params.hasOwnProperty("teamId")
 
@@ -26,12 +18,14 @@ export const TeamForm = props => {
     }
 
     const getTeamInEditMode = () => {
-        if (editMode) {
+        if (editMode) { 
             const teamId = parseInt(props.match.params.teamId)
-            const selectedTeam = teams.find(t => t.id === teamId) || {}
-            setCurrentTeam(selectedTeam)
+            const singleTeam = teams.find(t => t.id === teamId) || {}
+            setCurrentTeam(singleTeam)
         }
     }
+
+    console.log(currentTeam)
 
     useEffect(() => {
         getTeams()
@@ -40,7 +34,13 @@ export const TeamForm = props => {
 
     useEffect(() => {
         getTeamInEditMode()
-    }, [currentTeam])
+    }, [teams])
+
+    // useEffect(() => {
+    //     if (editMode) {
+    //         setCurrentTeam(teams)
+    //     }
+    // }, [])
 
     const registerNewTeam = () => {
         if (editMode) {
@@ -53,20 +53,12 @@ export const TeamForm = props => {
                 teamValue: parseInt(currentTeam.team_value),
                 teamRerolls: parseInt(currentTeam.team_rerolls),
                 fanFactor: parseInt(currentTeam.fan_factor),
-                leagueId: parseInt(currentTeam.league),
+                leagueId: parseInt(currentTeam.league.id),
                 coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push(`/teams/${currentTeam.id}`))
         } else {
-            createTeam({
-                teamName: currentTeam.team_name,
-                teamType: currentTeam.team_type,
-                teamRank: parseInt(currentTeam.team_rank),
-                teamValue: parseInt(currentTeam.team_value),
-                teamRerolls: parseInt(currentTeam.team_rerolls),
-                fanFactor: parseInt(currentTeam.fan_factor),
-                leagueId: parseInt(currentTeam.league),
-            })
+            createTeam(currentTeam)
                 .then(() => props.history.push("/teams"))
         }
     }
@@ -77,9 +69,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamName">Team Name: </label>
-                    <input type="text" name="name" required autoFocus className="form-control"
+                    <input type="text" name="team_name" required autoFocus className="form-control"
                         placeholder="Team Name Here"
-                        value={currentTeam.teamName}
+                        defaultValue={currentTeam.team_name}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -87,9 +79,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamType">Team Type: </label>
-                    <input type="text" name="teamType" required autoFocus className="form-control"
+                    <input type="text" name="team_type" required autoFocus className="form-control"
                         placeholder="Orcs, Elves, or Halflings?"
-                        value={currentTeam.teamType}
+                        defaultValue={currentTeam.team_type}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -97,9 +89,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamRank">Team Rank: </label>
-                    <input type="text" name="teamRank" required autoFocus className="form-control"
+                    <input type="text" name="team_rank" required autoFocus className="form-control"
                         placeholder="How much are you winning?"
-                        value={currentTeam.teamRank}
+                        defaultValue={currentTeam.team_rank}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -107,9 +99,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamValue">Team Value: </label>
-                    <input type="text" name="teamValue" required autoFocus className="form-control"
+                    <input type="text" name="team_value" required autoFocus className="form-control"
                         placeholder="What are you worth?"
-                        value={currentTeam.teamValue}
+                        defaultValue={currentTeam.team_value}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -117,9 +109,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="teamRerolls">Team Rerolls: </label>
-                    <input type="text" name="teamRerolls" required autoFocus className="form-control"
+                    <input type="text" name="team_rerolls" required autoFocus className="form-control"
                         placeholder="How often can you turn back time?"
-                        value={currentTeam.teamRerolls}
+                        defaultValue={currentTeam.team_rerolls}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -127,9 +119,9 @@ export const TeamForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="fanFactor">Fan Factor: </label>
-                    <input type="text" name="fanFactor" required autoFocus className="form-control"
+                    <input type="text" name="fan_factor" required autoFocus className="form-control"
                         placeholder="Do fans even like you?"
-                        value={currentTeam.fanFactor}
+                        defaultValue={currentTeam.fan_factor}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -138,7 +130,7 @@ export const TeamForm = props => {
                 <div className="form-group">
                     <label htmlFor="leagueId">League: </label>
                     <select name="leagueId" className="form-control"
-                        value={currentTeam.leagueId}
+                        defaultValue={currentTeam.league.id}
                         onChange={handleControlledInputChange}>
                         <option value="0">Select a league</option>
                         {

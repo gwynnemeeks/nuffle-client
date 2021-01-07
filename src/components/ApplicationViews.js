@@ -49,6 +49,9 @@ export const ApplicationViews = (props) => {
                     <Route exact path="/teams/players/:playerId(\d+)" render={
                         props => <PlayerDetails {...props} />
                     } />
+                    <Route exact path="/teams/players/edit/:playerId(\d+)" render={
+                            props => <PlayerForm {...props} />
+                        } />
                 </PlayerProvider>
             </TeamProvider>
 
