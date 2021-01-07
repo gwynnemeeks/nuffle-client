@@ -42,7 +42,7 @@ export const LeagueForm = props => {
                 leagueName: currentLeague.league_name,
                 coach: parseInt(localStorage.getItem("token"))
             })
-                .then(() => props.history.push(`/leagues/${leagues.id}`))
+                .then(() => props.history.push(`/leagues/${currentLeague.id}`))
 
         } else {
             createLeague(currentLeague)
