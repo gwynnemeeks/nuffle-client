@@ -3,7 +3,7 @@ import React, { useState } from "react"
 export const LeagueContext = React.createContext()
 
 export const LeagueProvider = (props) => {
-    const [leagues, setLeagues] = useState([])
+    const [leagues, setLeagues] = useState([{league_name: ''}])
     const [singleLeague, setSingleLeague] = useState({})
 
     const getLeagues = () => {

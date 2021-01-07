@@ -38,16 +38,14 @@ export const LeagueForm = props => {
         if (editMode) {
             // debugger
             updateLeague({
-                id: leagues.id,
-                leagueName: leagues.league_name,
+                id: currentLeague.id,
+                leagueName: currentLeague.league_name,
                 coach: parseInt(localStorage.getItem("token"))
             })
                 .then(() => props.history.push(`/leagues/${leagues.id}`))
 
         } else {
-            createLeague({
-                leagueName: leagues.league_name
-            })
+            createLeague(currentLeague)
                 .then(() => props.history.push("/leagues"))
         }
     }
