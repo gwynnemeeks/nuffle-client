@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { PlayerContext } from "../Players/PlayerProvider"
 
 export const PlayerDetails = (props) => {
-    const { players, getSinglePlayer } = useContext(PlayerContext)
+    const { players, getSinglePlayer, deletePlayer } = useContext(PlayerContext)
 
     const [setPlayer] = useState()
 
@@ -26,6 +26,8 @@ export const PlayerDetails = (props) => {
                 <li className="list-group-item">ST: {players.strength}</li>
                 <li className="list-group-item">MV: {players.movement}</li>
             </ul>
+            <button className="btn btn-light" onClick={() => deletePlayer(players.id).then(() => props.history.push("/players"))} >Delete Player</button>
+            <button className="btn btn-dark" onClick={() => {props.history.push(`/teams/players/edit/${players.id}`)}}>Edit Player</button>
         </section>
         </>
     )
