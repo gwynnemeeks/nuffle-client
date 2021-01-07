@@ -34,7 +34,7 @@ export const EventForm = props => {
     const registerNewEvent = () => {
         if (editMode) {
             updateEvent({
-                id: createEvent.id,
+                id: currentEvent.id,
                 day: currentEvent.day,
                 time: currentEvent.time,
                 location: currentEvent.location,
