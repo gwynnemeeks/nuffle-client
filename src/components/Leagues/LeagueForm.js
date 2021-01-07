@@ -57,7 +57,7 @@ export const LeagueForm = props => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="leagueName">League Name: </label>
-                    <input type="text" name="leagueName" required autoFocus className="form-control"
+                    <input type="text" name="league_name" required autoFocus className="form-control"
                         defaultValue={currentLeague.league_name}
                         onChange={handleControlledInputChange}
                     />
