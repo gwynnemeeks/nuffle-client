@@ -4,15 +4,16 @@ export const EventContext = React.createContext()
 
 export const EventProvider = (props) => {
     const [events, setEvents] = useState([])
+    const [singleEvent, setSingleEvent] = useState({})
 
     const getEvents = () => {
         return fetch("http://localhost:8000/events", {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("token")}`
             }
-    })
-        .then(response => response.json())
-        .then(setEvents)
+        })
+            .then(response => response.json())
+            .then(setEvents)
     }
 
     const getSingleEvent = (id) => {
@@ -23,7 +24,7 @@ export const EventProvider = (props) => {
             }
         })
             .then(res => res.json())
-            .then(setEvents)
+            .then(setSingleEvent)
     }
 
     const createEvent = event => {
@@ -35,8 +36,8 @@ export const EventProvider = (props) => {
             },
             body: JSON.stringify(event)
         })
-        .then(response => response.json())
-        .then(getEvents)
+            .then(response => response.json())
+            .then(getEvents)
     }
 
     const deleteEvent = (id) => {
@@ -64,7 +65,7 @@ export const EventProvider = (props) => {
 
     return (
         <EventContext.Provider value={{
-            events, getEvents, createEvent, getSingleEvent, deleteEvent, updateEvent
+            events, getEvents, createEvent, getSingleEvent, deleteEvent, updateEvent, singleEvent
         }}>
             {props.children}
         </EventContext.Provider>

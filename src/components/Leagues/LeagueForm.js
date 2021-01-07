@@ -50,6 +50,7 @@ export const LeagueForm = props => {
         }
     }
 
+
     return (
         <form className="col-6 offset-3">
             <h2 className="leagueForm__leagueTitle">{editMode ? "Update League" : "Register New League"}</h2>
