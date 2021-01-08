@@ -7,6 +7,8 @@ import { Link } from "react-router-dom"
 import { PlayerContext } from "../Players/PlayerProvider"
 import { TeamContext } from "./TeamProvider"
 
+import "./Teams.scss"
+
 export const TeamDetails = (props) => {
     const { getSingleTeam, deleteTeam, singleTeam } = useContext(TeamContext)
     const { players, getPlayersByTeamId } = useContext(PlayerContext)
