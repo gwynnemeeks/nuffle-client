@@ -6,7 +6,7 @@ export const TeamContext = React.createContext()
 
 export const TeamProvider = (props) => {
     const [teams, setTeams] = useState([])
-    const [singleTeam, setSingleTeam] = useState({})
+    const [singleTeam, setSingleTeam] = useState({coach: {}, league: {}})
 
     const getTeams = () => {
         return fetch("http://localhost:8000/teams", {

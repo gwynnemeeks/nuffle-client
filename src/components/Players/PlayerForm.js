@@ -54,6 +54,7 @@ export const PlayerForm = props => {
 
         } else {
             createPlayer(currentPlayer)
+            // props.history is part of react router pkg and history.push changes the browsers url
                 .then(() => props.history.push("/players"))
         }
     }
