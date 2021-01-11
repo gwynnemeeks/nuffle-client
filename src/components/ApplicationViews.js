@@ -1,6 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
-// import { ProfileProvider } from "./Auth/AuthProvider"
+import { ProfileProvider } from "./Auth/AuthProvider"
 // import { Profile } from "./Auth/Profile"
 
 import { EventList } from "./Events/EventList"
@@ -30,6 +30,7 @@ export const ApplicationViews = (props) => {
             <TeamProvider>
                 <LeagueProvider>
                     <PlayerProvider>
+                        <ProfileProvider>
 
                         <Route exact path="/teams" render={props => <TeamList {...props} />} />
                         <Route exact path="/teams/new" render={props => <TeamForm {...props} />} />
@@ -39,6 +40,7 @@ export const ApplicationViews = (props) => {
                         <Route exact path="/teams/edit/:teamId(\d+)" render={
                             props => <TeamForm {...props} />
                         } />
+                        </ProfileProvider>
                     </PlayerProvider>
                 </LeagueProvider>
             </TeamProvider>
