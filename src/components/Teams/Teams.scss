@@ -2,3 +2,10 @@
     padding: 5px;
     margin: 5px;
 }
+
+.teams {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    margin: 10px;
+}

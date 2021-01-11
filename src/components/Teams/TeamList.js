@@ -2,13 +2,15 @@
 import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { TeamContext } from "./TeamProvider"
+import { ProfileContext } from "../Auth/AuthProvider"
 import "./Teams.scss"
 
 export const TeamList = (props) => {
-    const { teams, getTeams, singleTeam, getSingleTeam } = useContext(TeamContext)
+    const { teams, getTeams } = useContext(TeamContext)
+    const { singleProfile, getSingleProfile } = useContext(ProfileContext)
 
     useEffect(() => {
-        getSingleTeam()
+        getSingleProfile()
     }, [])
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export const TeamList = (props) => {
                     <div className="card mb-3">
                         <div className="row no-gutters">
                             <div className="col-md-4">
-                                <h3>{singleTeam.coach.title}</h3>
+                                <h3>{singleProfile.title}</h3>
                                 <button className="btn btn-light"
                                     onClick={() => {
                                         props.history.push({ pathname: "/teams/new" })
@@ -32,7 +34,7 @@ export const TeamList = (props) => {
                             </div>
                             <div className="col-md-8">
                                 <div className="card-body">
-                                    <h1>Your Teams</h1>
+                                    <h2>Your Teams</h2>
                                     {
                                         teams.map(tea => {
                                             return <Link key={tea.id} to={`/teams/${tea.id}`}>
